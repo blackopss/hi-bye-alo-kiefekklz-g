@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const fs = require("fs");
+var Canvas = require('canvas')
+var jimp = require('jimp')
+var moment = require("moment");
 const devs = ['431150885549113344','244423000802328576'];
 const adminprefix = "!!";
 var data = JSON.parse(fs.readFileSync('data.json','utf8'))
@@ -367,7 +370,93 @@ u.guild.members.get(ss.executor.id).roles.forEach(r => {
     });
 })
 ///End
+///id
+client.on('message', message => {
+    if (message.content.startsWith(".id")) {
+      var args = message.content.split(" ").slice(1);
+      let user = message.mentions.users.first();
+      var men = message.mentions.users.first();
+         var heg;
+         if(men) {
+             heg = men
+         } else {
+             heg = message.author
+         }
+       var mentionned = message.mentions.members.first();
+          var h;
+         if(mentionned) {
+             h = mentionned
+         } else {
+             h = message.member
+         }
 
+  moment.locale('ar-ly');
+const w = ['./ID1.png','./ID2.png','./ID3.png','./ID4.png',];
+
+        let Image = Canvas.Image,
+            canvas = new Canvas(500, 500),
+            ctx = canvas.getContext('2d');
+        ctx.patternQuality = 'bilinear';
+        ctx.filter = 'bilinear';
+        ctx.antialias = 'subpixel';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 500, 500);
+
+})
+
+                let url = h.user.displayAvatarURL.endsWith(".webp") ? h.user.displayAvatarURL.slice(5, -20) + ".png" : h.user.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                        //ur name
+                        ctx.font = '23px BlowBrush';
+                        ctx.fontSize = '30px';
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.textAlign = "center";
+                        ctx.fillText(h.user.username, 137, 329);
+
+                        //discord
+                        ctx.font = '25px BlowBrush';
+                        ctx.fontSize = '30px';
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`${moment(heg.createdTimestamp).fromNow()}` , 65, 375);
+
+                        //server
+                        ctx.font = '25px BlowBrush';
+                        ctx.fontSize = '30px';
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`${moment(h.joinedAt).fromNow()}` , 70, 429);
+                             
+                        //Avatar
+                        let Avatar = Canvas.Image;
+                        let ava = new Avatar;
+                        ava.src = buf;
+                        ctx.beginPath();
+                        ctx.arc(89, 199, 80, 0, Math.PI*2, true); 
+                        ctx.closePath();
+                        ctx.clip();
+                        ctx.drawImage(ava, 9, 120, 160, 160);
+                         
+     message.channel.sendFile(canvas.toBuffer())
+
+
+
+})
+})
+
+}
+});
+///id
 
 
 
