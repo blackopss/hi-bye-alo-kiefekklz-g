@@ -389,8 +389,7 @@ client.on('message', message => {
          } else {
              h = message.member
          }
-
-  moment.locale('ar-ly');
+  moment.locale('ar-TN');
 const w = ['./ID1.png','./ID2.png','./ID3.png','./ID4.png',];
 
         let Image = Canvas.Image,
