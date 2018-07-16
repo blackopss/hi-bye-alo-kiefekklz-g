@@ -499,44 +499,6 @@ client.on('message', message => {
  
 ///id
 
-///Server avatar
-client.on("message", message => {    
-    if(!message.channel.guild) return;
-if(message.author.bot) return;
-if(message.content === ".s-avatar"){ 
-    const embed = new Discord.RichEmbed()
-
-.setTitle(`There you go ** ${message.guild.name} **`)
-.setAuthor(message.author.username, message.guild.iconrURL)
-.setColor('RANDOM')
-.setImage(message.guild.iconURL)
-
-message.channel.send({embed});
-}
-});
-///end
-
-
-///Avatar
-
-client.on('message', message => {
-if (message.content.startsWith(".avatar")) {
-  var mentionned = message.mentions.users.first();
-var x5bzm;
-if(mentionned){
-    var x5bzm = mentionned;
-} else {
-    var x5bzm = message.author;
-    
-}
-  const embed = new Discord.RichEmbed()
-  .setColor("RANDOM")
-  .setImage(`${x5bzm.avatarURL}`)
-message.channel.sendEmbed(embed);
-}
-}); /By Ghost
-///end
-
 
 ///hug
 client.on('message', message => {
