@@ -928,7 +928,6 @@ if(!sWlc[member.guild.id]) sWlc[member.guild.id] = {
                                  ctx.closePath();
                                  ctx.clip();
                                  ctx.drawImage(ava, 10, 25, 135, 170);                    
-welcomer.sendFile(canvas.toBuffer())
 welcomer.send(`Welcome To **${member.guild.name}**,${member}! You are The __${member.guild.memberCount}__ user!`)
 
 
