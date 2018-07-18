@@ -952,7 +952,6 @@ if(!p[message.guild.id]) p[message.guild.id] = {
     channel: "welcome"
 }
 const prefix = p[message.guild.id].prefix
-sql.open("./score.sqlite");
 const channel = sWlc[message.guild.id].channel
 ///////////////////////////////////////////
 if (message.content.startsWith(prefix + "setprefix")) {
