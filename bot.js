@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const fs = require("fs");
 var Canvas = require('canvas')
 var jimp = require('jimp')
+const sWlc = JSON.parse(fs.readFileSync("./wlc.json", "utf8"));
 var moment = require("moment");
 const devs = ['431150885549113344','244423000802328576'];
 const adminprefix = "!!";
@@ -879,7 +880,95 @@ client.on('message', message => {
 ///end
 
 
+///welcome test
 
+client.on('guildMemberAdd', member => { 
+if(!sWlc[member.guild.id]) sWlc[member.guild.id] = {
+    channel: "welcome"
+  }
+  const channel = sWlc[member.guild.id].channel
+    const sChannel = sWlc[member.guild.id].channel
+    let welcomer = member.guild.channels.find('name', sChannel);
+    let memberavatar = member.user.avatarURL
+      if (!welcomer) return;
+
+
+
+        var w = ['/img/12.png'];
+           let Image = Canvas.Image,
+               canvas = new Canvas(401, 202),
+               ctx = canvas.getContext('2d');
+           ctx.patternQuality = 'bilinear';
+           ctx.filter = 'bilinear';
+           ctx.antialias = 'subpixel';
+           ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+           ctx.shadowOffsetY = 2;
+           ctx.shadowBlur = 2;
+           fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+               if (err) return console.log(err);
+               let BG = Canvas.Image;
+               let ground = new Image;
+               ground.src = Background;
+               ctx.drawImage(ground, 0, 0, 401, 202);
+   
+   })
+   
+                   let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(5, -20) + ".png" : member.user.displayAvatarURL;
+                   jimp.read(url, (err, ava) => {
+                       if (err) return console.log(err);
+                       ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                           if (err) return console.log(err);
+//AVATAR�
+                              let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(75, 100, 63, 0, Math.PI*2);
+                                 ctx.closePath();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 10, 25, 135, 170);                    
+welcomer.sendFile(canvas.toBuffer())
+welcomer.send(`Welcome To **${member.guild.name}**,${member}! You are The __${member.guild.memberCount}__ user!`)
+
+
+
+})
+})
+
+});
+///end
+
+
+///dont
+const premium = ['431150885549113344', '336606008069849088', '427946202890240023', '343383616895713290']
+client.on('message', message => {
+if(message.channel.type === "dm") return;
+if(message.author.bot) return;
+if(!p[message.guild.id]) p[message.guild.id] = {
+    prefix: "."
+}
+  if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
+    channel: "welcome"
+}
+const prefix = p[message.guild.id].prefix
+sql.open("./score.sqlite");
+const channel = sWlc[message.guild.id].channel
+///////////////////////////////////////////
+if (message.content.startsWith(prefix + "setprefix")) {
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newPrefix = message.content.split(' ').slice(1).join(" ")
+    if(!newPrefix) return message.reply(`**${prefix}setprefix <prefix>**`)
+    p[message.guild.id].prefix = newPrefix
+    message.channel.send(`**${message.guild.name}'s prefix has been changed to ${newPrefix}**`);
+}     
+  if (message.content.startsWith(prefix + "setwelcomer")) {
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newChannel = message.content.split(' ').slice(1).join(" ")
+    if(!newChannel) return message.reply(`**${prefix}setwelcomer <channel name>**`)
+    sWlc[message.guild.id].channel = newChannel
+    message.channel.send(`**${message.guild.name}'s channel has been changed to ${newChannel}**`);
+  }
+});
 
 
 
