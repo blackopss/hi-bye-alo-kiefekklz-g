@@ -3,6 +3,7 @@ const fs = require("fs");
 var Canvas = require('canvas')
 var jimp = require('jimp')
 const sWlc = JSON.parse(fs.readFileSync("./wlc.json", "utf8"));
+const p = JSON.parse(fs.readFileSync(`./sp.json`, "utf8"));
 var moment = require("moment");
 const devs = ['431150885549113344','244423000802328576'];
 const adminprefix = "!!";
