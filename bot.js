@@ -883,76 +883,31 @@ client.on('message', message => {
 
 
 
-///كود اليوزر زي برو بوت
-
-  client.on('message', message => {
-          
-
-           if (message.content.startsWith(prefix + "user")) {
-                     if(!message.channel.guild) return message.reply(`... ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-    .setColor("#0a0909")
- .setThumbnail(message.author.avatarURL)
-.addField(': Joined Discord At',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
-.addField(': Joined Server At', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-
-.setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')  
-    message.channel.sendEmbed(id);
-})
-}
-    
-
-         
-     });
-  
+///كود معلومات السيرفر
 
 
 
+client.on('message', function(msg) {
+    const prefix = '.'
+    if(msg.content.startsWith ('server')) {
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.guild.iconURL)
+      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
+      .addField('🌐** Server Region**',`[** __${msg.guild.region}__ **]`,true)
+      .addField('🏅** __Roles__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField('🔴**__ Members Count__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField('🔵**__ Online Members Count__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField('📝**__ Text Channels__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField('🎤**__ voice Channels__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField('👑**__ The Owner__**',`**${msg.guild.owner}**`,true)
+      .addField('🆔**__ Server ID__**',`**${msg.guild.id}**`,true)
+      .addField('📅**__Server Created At __**',msg.guild.createdAt.toLocaleString())
+      msg.channel.send({embed:embed});
+    }
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///انتهى
 
 
 
