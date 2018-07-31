@@ -210,13 +210,13 @@ let user = message.mentions.users.first() || message.author
                                                                     ctx.font = '30px Arial';
                                                      ctx.fontSize = '30px';
                                                      ctx.fillStyle = "#ffffff";
-                                                                             ctx.fillText(`${message.guild.members.get(user.id).joinedAt}`,150, 305);
+                                                                             ctx.fillText(`${moment(message.guild.members.get(user.id).joinedAt).fromNow()}`,150, 305);
                                                               
                                                               
                                                                                                      ctx.font = '30px Arial';
                                                      ctx.fontSize = '30px';
                                                      ctx.fillStyle = "#ffffff";
-                                                                 ctx.fillText(`${user.createdTimestamp}`,150, 170); 
+                                                                 ctx.fillText(`${moment(user.createdAt).fromNow()}`,150, 170); 
                             
                                                        let status;
      if (user.presence.status === 'online') {
