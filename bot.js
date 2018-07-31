@@ -204,19 +204,19 @@ let user = message.mentions.users.first() || message.author
                                                                              ctx.fillText(`${user.username}`,655, 170);
                                                                             
                                                                         
-                                                          mpment.locale('en-ly');        
+                                                          moment.locale('en-ly');        
                                             
                                             
                                                                     ctx.font = '30px Arial';
                                                      ctx.fontSize = '30px';
                                                      ctx.fillStyle = "#ffffff";
-                                                                             ctx.fillText(`${moment(h.joinedAt).fromNow()}`,150, 305);
+                                                                             ctx.fillText(`${message.guild.members.get(user.id).joinedAt}`,150, 305);
                                                               
                                                               
                                                                                                      ctx.font = '30px Arial';
                                                      ctx.fontSize = '30px';
                                                      ctx.fillStyle = "#ffffff";
-                                                                 ctx.fillText(`${moment(heg.createdTimestamp).fromNow()}`,150, 170); 
+                                                                 ctx.fillText(`${user.createdTimestamp}`,150, 170); 
                             
                                                        let status;
      if (user.presence.status === 'online') {
