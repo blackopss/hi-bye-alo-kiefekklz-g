@@ -640,32 +640,3 @@ client.on('message', message => {
 });
 ///end
 
-
-
-
-
-///كود معلومات السيرفر
-
-
-
-client.on('message', function(msg) {
-    const prefix = '.'
-    if(msg.content.startsWith ('server')) {
-      let embed = new Discord.RichEmbed()
-      .setColor('RANDOM')
-      .setThumbnail(msg.guild.iconURL)
-      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
-      .addField('🌐** Server Region**',`[** __${msg.guild.region}__ **]`,true)
-      .addField('🏅** __Roles__**',`[** __${msg.guild.roles.size}__ **]`,true)
-      .addField('🔴**__ Members Count__**',`[** __${msg.guild.memberCount}__ **]`,true)
-      .addField('🔵**__ Online Members Count__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
-      .addField('📝**__ Text Channels__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
-      .addField('🎤**__ voice Channels__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
-      .addField('👑**__ The Owner__**',`**${msg.guild.owner}**`,true)
-      .addField('🆔**__ Server ID__**',`**${msg.guild.id}**`,true)
-      .addField('📅**__Server Created At __**',msg.guild.createdAt.toLocaleString())
-      msg.channel.send({embed:embed});
-    }
-  });
-
-///انتهى
