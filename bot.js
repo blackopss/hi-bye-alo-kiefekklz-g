@@ -159,7 +159,7 @@ u.guild.members.get(ss.executor.id).roles.forEach(r => {
 ///id
 client.on('message', message => {
     if(message.content == ('.id')) {    
-    if(message.channel.type !== "text") return; 
+    if(message.channel.type !== "dm") return; 
     const w = ['./img/ID1.png','./img/ID2.png','./img/ID3.png','./img/ID4.png','./img/ID5.png'];
              let Image = Canvas.Image,
             canvas = new Canvas(802, 404),
