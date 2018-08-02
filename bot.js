@@ -179,20 +179,7 @@ client.on('message', message => {
     
      })
      let user = message.mentions.users.first();
-     var men = message.mentions.users.first();
-        var heg;
-        if(men) {
-            heg = men
-        } else {
-            heg = message.author
-        }
-      var mentionned = message.mentions.members.first();
-         var h;
-        if(mentionned) {
-            h = mentionned
-        } else {
-            h = message.member
-        }                                           let url = user.displayAvatarURL.endsWith(".webp") ? user.displayAvatarURL.slice(5, -20) + ".png" : user.displayAvatarURL;
+                                let url = user.displayAvatarURL.endsWith(".webp") ? user.displayAvatarURL.slice(5, -20) + ".png" : user.displayAvatarURL;
                                              jimp.read(url, (err, ava) => {
                                                  if (err) return console.log(err);
                                                  ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
@@ -223,7 +210,7 @@ client.on('message', message => {
                                                                     ctx.font = '30px Arial';
                                                      ctx.fontSize = '30px';
                                                      ctx.fillStyle = "#ffffff";
-                                                                             ctx.fillText(`${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``,150, 305);
+                                                                             ctx.fillText(	`${moment(message.guild.members.get(user.id).joinedAt).fromNow()}`,150, 305);
                                                               
                                                                                                      ctx.font = '30px Arial';
                                                      ctx.fontSize = '30px';
