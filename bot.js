@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require("fs");
-var moment = require("moment");
+const moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
 const client = new Discord.Client();
 const prefix = '.'
@@ -142,7 +142,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
  if(message.content.startsWith(prefix + 'hug')) {
-    const hug = fs.readFileSync(`./data/hug.js`)
+    const { hug }  = require(`./data/reactions.js`)
     console.log(hug)
     if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
     message.channel.send("", {embed: {
