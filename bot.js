@@ -639,7 +639,7 @@ client.on('message', message => {
 }
 });
 ///end
-
+//id(embed)
 client.on('message', message => {
     if (message.content === prefix + ("id")) {
         var args = message.content.split(" ").slice(1);
@@ -669,7 +669,7 @@ client.on('message', message => {
        message.channel.send(id)
    }
 })
-
+//end
 
 
 
