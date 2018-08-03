@@ -724,6 +724,7 @@ client.on('message', message => {
  .addField("**Members Size:**", client.users.size)
  .addField("**Channels:**", client.channels.size)
  .setTimestamp()
+ .setThumbnail('https://cdn2.iconfinder.com/data/icons/clean-and-simple/153/Settings-128.png')
  message.channel.sendEmbed(embed);   
 }
 });
