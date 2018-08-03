@@ -322,8 +322,6 @@ client.on('message', message => {
     });
 //end
 
-//AutoRole
-let ar = JSON.parse(fs.readFileSync(`./data/AutoRole.json`, `utf8`))
 
 
 client.on('guildMemberAdd', member => {
