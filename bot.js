@@ -158,7 +158,7 @@ u.guild.members.get(ss.executor.id).roles.forEach(r => {
 ///End
 ///id
 client.on('message', message => {
-    if(message.content == ('.id')) {    
+    if(message.content == ('.id1')) {    
     if(message.channel.type !== "dm") return; 
     const w = ['./img/ID1.png','./img/ID2.png','./img/ID3.png','./img/ID4.png','./img/ID5.png'];
              let Image = Canvas.Image,
@@ -639,3 +639,33 @@ client.on('message', message => {
 }
 });
 ///end
+
+client.on('message', message => {
+    if (message.content === prefix + ("id")) {
+        var args = message.content.split(" ").slice(1);
+        let user = message.mentions.users.first();
+        var men = message.mentions.users.first();
+           var heg;
+           if(men) {
+               heg = men
+           } else {
+               heg = message.author
+           }
+         var mentionned = message.mentions.members.first();
+            var h;
+           if(mentionned) {
+               h = mentionned
+           } else {
+               h = message.member
+           }
+                  moment.locale('ar-TN');
+         var id = new  Discord.RichEmbed()
+       .setColor("RANDOM")
+           .setThumbnail(message.author.avatarURL)
+           .setAuthor(` ${message.author.username} `, message.author.avatarURL)
+         .addField(': Joined At', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
+       .addField(': Created In ', `${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
+       .setFooter(`${message.author.username}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
+       message.channel.send(id)
+   }
+})
