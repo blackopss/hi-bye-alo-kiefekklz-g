@@ -823,11 +823,11 @@ Role : __${ar[message.guild.id].role}__`)
 
 ///MEMBER
 client.on('message', message => {
-    if(message.content == '.member') {
+    if(message.content == '.members') {
     const embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setImage(message.guild.iconURL)
-    .addField(`حالة الأعضاء🔋`,'-',   true)
+    .addField(`Status of Members🔋`,'-',   true)
 .addField(`💚 Online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
 .addField(`❤ Do Not Disturb:     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
 .addField(`💛 Idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)   
@@ -842,29 +842,4 @@ client.on('message', message => {
 
 
 
-///top invite
-client.on('message',message =>{
-    if(message.content ==  ".top"){
-message.guild.fetchInvites().then(i =>{
-var invites = [];
 
-i.forEach(inv =>{
-    var [invs,i]=[{},null];
-    
-    if(inv.maxUses){
-        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
-    }else{
-        invs[inv.code] =+ inv.uses;
-    }
-invites.push(`   Your Invites  :- (${inv.inviter}) =  (${invs[inv.code]}) \;`);
-
-invites.push( `Your Link Invite  :point_up::skin-tone-1::  ${inv.url} \;`);
-});
-  message.channel.send(invites.join(`\n`)+'\n\n**<@466350862965407744>** '+message.author);
-  
-});
-
-    }
-});
-
-///end
