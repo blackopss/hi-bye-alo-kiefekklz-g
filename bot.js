@@ -135,7 +135,7 @@ function random(xlenght) {
 
 function errormsg(err) {
     message.channel.send(errmsg) 
-    message.channel.send(`**:warning: Error**`, {embed: {
+    client.channels.get("475028391473709068").send(`**:warning: Error**`, {embed: {
     description: err,
     fields: [
         {
