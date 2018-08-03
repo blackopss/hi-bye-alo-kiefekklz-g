@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const fs = require("fs");
 const moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
+const errmsg = "<:eRrOr:475075170231517184> **Oops, something unexpected happened!** The error was sent to our team and we'll do our best to fix it."
 const client = new Discord.Client();
 const prefix = '.'
 client.login(process.env.SECERT_TOKEN);
@@ -127,21 +128,43 @@ client.login(process.env.SECERT_TOKEN);
 //   });
 // ///End
 // ///id
+/////////////// Functions //////////////////
+function random(xlenght) {
+    return Math.floor((Math.random() * xlenght));
+}
+
+function errormsg(err) {
+    message.channel.send(errmsg) 
+    message.channel.send(`**:warning: Error**`, {embed: {
+    description: err,
+    fields: [
+        {
+        name: "**server**",
+        value: message.guild.name
+        }, 
+        {
+        name: "**user**",
+        value: message.author.username
+        }, 
+        {
+        name: "**command**",
+        value: "hug"
+        }
+    ]}})
+    return; 
+}
 /////////////// Other Client Events //////////////////
 client.on("ready", () =>{
 client.user.setActivity(".help | Alpha")
 client.channels.get("475028391473709068").send(`Waifu's bot is ready.`)
 })
-/////////////// Functions //////////////////
-function random(xlenght) {
-return Math.floor((Math.random() * xlenght));
-}
 
 
 client.on('message', message => {
 if(message.channel.type !== "text") return; 
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,7 +178,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
-    }).catch(err => message.channel.send(`Oops, an error occur.\n \`\`${err}\`\``))
+    }).catch(err => errormsg(err))
 }
 
 else if(message.content.startsWith(prefix + "kiss")) {
@@ -165,7 +188,7 @@ else if(message.content.startsWith(prefix + "kiss")) {
     description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a kiss" : `**${user.username}** you have been kissed by **${message.author.username}**`,
     image: {
         url: kiss[random(hug.length)]
-    }
+    } 
     }})
 }
 

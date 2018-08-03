@@ -1,5 +1,5 @@
    exports.hug =  
-   ["https://78.media.tumblr.com/28e86413485a973ae859a745a7a5382e/tumblr_o1hf0uK2NL1uapp8co1_500.gif",
+["https://78.media.tumblr.com/28e86413485a973ae859a745a7a5382e/tumblr_o1hf0uK2NL1uapp8co1_500.gif",
     "https://78.media.tumblr.com/18fdf4adcb5ad89f5469a91e860f80ba/tumblr_oltayyHynP1sy5k7wo1_500.gif",
     "https://78.media.tumblr.com/e790af0168cd80394b7d792dde07407b/tumblr_o76qfcMiFn1sk1rjvo1_500.gif",
     "https://78.media.tumblr.com/350c512200d6cbb6506774f2cddc9641/tumblr_ooonx9vM691qzxv73o1_500.gif",
@@ -16,7 +16,7 @@
     "https://i.gifer.com/8WPN.mp4",
     "https://i.gifer.com/GAMC.gif"]
     exports.slap = 
-    ["https://cdn.discordapp.com/attachments/466949822604247044/467005787189805066/Slap_6.gif",
+["https://cdn.discordapp.com/attachments/466949822604247044/467005787189805066/Slap_6.gif",
 "https://cdn.discordapp.com/attachments/466949822604247044/467005776880336896/Slap_9.gif",
 "https://cdn.discordapp.com/attachments/466949822604247044/467005776515563520/Slap_11.gif",
 "https://cdn.discordapp.com/attachments/466949822604247044/467005770114793492/Slap_8.gif",
