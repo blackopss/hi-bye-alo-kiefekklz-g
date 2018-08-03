@@ -142,8 +142,8 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
  if(message.content.startsWith(prefix + 'hug')) {
-    const { hug }  = require(`./data/reactions.js`)
-    console.log(hug)
+    const { hug } = require(`./data/reactions.js`)
+    console.log(hug[random(hug.length)])
     if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
     message.channel.send("", {embed: {
     description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a hug" : `**${user.username}** you have been hugged by **${message.author.username}**`,
