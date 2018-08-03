@@ -137,13 +137,14 @@ client.on('message', message => {
 if(message.channel.type !== "text") return; 
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
  if(message.content.startsWith(prefix + 'hug')) {
     const hug = JSON.parse(fs.readFile(`./data/hug.json`, `utf8`))
+    console.log(hug.length)
+    console.log(random(hug.length))
     if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
     message.channel.send("", {embed: {
     description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a hug" : `**${user.username}** you have been hugged by **${message.author.username}**`,
