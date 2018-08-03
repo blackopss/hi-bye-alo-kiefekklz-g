@@ -673,20 +673,16 @@ client.on('message', message => {
 
 
 
-
-
-
-
 ///Server icon
 client.on("message", message => {
     const prefix = "."
               
           if(!message.channel.guild) return;
    if(message.author.bot) return;
-      if(message.content === prefix + "image"){ 
+      if(message.content === prefix + "icon"){ 
           const embed = new Discord.RichEmbed()
   
-      .setTitle(`This is  ** ${message.guild.name} **  Photo !`)
+      .setTitle(`This is  ** ${message.guild.name} **  icon !`)
   .setAuthor(message.author.username, message.guild.iconrURL)
     .setColor(0x164fe3)
     .setImage(message.guild.iconURL)
@@ -696,6 +692,29 @@ client.on("message", message => {
    message.channel.send({embed});
       }
   });
+///end
 
+///avatar
+client.on('message', message => {
+    if (message.content.startsWith(".avatar")) {
+if(!message.channel.guild) return;
 
+        var mentionned = message.mentions.users.first();
 
+    var client;
+      if(mentionned){
+          var client = mentionned;
+      } else {
+          var client = message.author;
+
+      }
+
+        const embed = new Discord.RichEmbed()
+                           .addField('Requested by:', "<@" + message.author.id + ">")
+
+        .setColor(000000)
+        .setFooter(اسم بوتك, 'ur bot image link')
+        .setImage(${client.avatarURL})
+      message.channel.sendEmbed(embed);
+    }
+});
