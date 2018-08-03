@@ -738,7 +738,7 @@ client.on('message', message => {
     if (message.author.bot) return;
         message.channel.sendMessage("**Pinging...**").then((message)=> {
     
-         message.edit(`**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\``);
+         message.edit(```**:ping_pong:** ${Date.now() - message.createdTimestamp} ms```);
     
         })
         }
