@@ -728,3 +728,20 @@ client.on('message', message => {
  message.channel.sendEmbed(embed);   
 }
 });
+///end 
+
+//ping-socket
+client.on('message', message => {
+    if (message.content.startsWith('.ping')) {
+               if(!message.channel.guild) return;
+    message.react(':thumbsup::skin-tone-1: ')
+    if (message.author.bot) return;
+        message.channel.sendMessage("**Pinging...**").then((message)=> {
+    
+         message.edit(`**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\``);
+    
+        })
+        }
+    
+    });
+//end
