@@ -148,7 +148,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
     user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
     message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a hug" : `**${user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
-    })
+    }).catch(err => message.channel.send(`Oops, an error occur.\n \`\`${err}\`\``))
 }
 
 else if(message.content.startsWith(prefix + "kiss")) {
