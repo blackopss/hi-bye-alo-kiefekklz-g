@@ -127,7 +127,12 @@ client.login(process.env.SECERT_TOKEN);
 //   });
 // ///End
 // ///id
-
+/////////////// Other Client Events //////////////////
+client.on("ready", () =>{
+client.user.setActivity(".help | Alpha")
+client.channels.get("475028391473709068").send(`Waifu's bot is ready.`)
+})
+/////////////// Functions //////////////////
 function random(xlenght) {
 return Math.floor((Math.random() * xlenght));
 }
@@ -148,7 +153,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
     if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
     user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a hug" : `**${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
+    message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
     }).catch(err => message.channel.send(`Oops, an error occur.\n \`\`${err}\`\``))
 }
