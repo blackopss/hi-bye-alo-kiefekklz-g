@@ -143,14 +143,12 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 /////////////// C O M M A N D S //////////////////
  if(message.content.startsWith(prefix + 'hug')) {
     const { hug } = require(`./data/reactions.js`)
-    console.log(hug[random(hug.length)])
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a hug" : `**${user.username}** you have been hugged by **${message.author.username}**`,
-    image: {
-        url: hug[random(hug.length)]
-    }
-    }})
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(!message.mentions.users) return message.channel.send(":x: You need to mention a user.")
+    user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a hug" : `**${user.username}** you have been hugged by **${message.author.username}**`, {files:
+    [hug[random(hug.length)]]
+    })
 }
 
 else if(message.content.startsWith(prefix + "kiss")) {
