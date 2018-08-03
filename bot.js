@@ -668,7 +668,7 @@ client.on('message', message => {
            .setAuthor(` ${message.author.username} `, message.author.avatarURL)
          .addField('Created At:', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
        .addField('Joined At: ', `${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-       .setFooter(`${message.author.username}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
+       .setFooter(`#${user.discriminator}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
        message.channel.send(id)
    }
 })
@@ -737,7 +737,7 @@ client.on('message', message => {
     if (message.author.bot) return;
         message.channel.sendMessage("**Pinging...**").then((message)=> {
     
-         message.edit(```**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\````);
+         message.edit(`**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\``);
     
         })
         }
@@ -833,8 +833,15 @@ client.on('message', message => {
     }
   });
 ///end
-
-
-
-
-
+//Fetch-Invites
+client.on('message', message => {
+    if(message.content.startsWith(`${prefix}invites`)) {
+        message.guild.fetchInvites().then(invs => {
+          let user = message.mentions.users.first() || message.author
+          let personalInvites = invs.filter(i => i.inviter.id === user.id);
+          let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+    message.channel.send(`${user} has ${inviteCount} invites.`);
+    });
+      }
+});
+//end
