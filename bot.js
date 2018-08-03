@@ -720,7 +720,7 @@ client.on('message', message => {
  .setColor('RANDOM')
  .setTitle(`${client.user.username}'s status.`)
  .addField("**Servers Size:**" , client.guilds.size, true)
- .addField("**Members Size:**", `${client.users.filter(user => user.presence.status === "online" + user.presence.status === "dnd" + user.presence.status === "idle")} total(${client.users.size})`, true)
+ .addField("**Members Size:**", `${client.users.filter(user => user.presence.status === "online") + client.users.filter(user => user.presence.status === "dnd") + client.users.filter(user => user.presence.status === "idle")} total(${client.users.size})`, true)
  .addField("**Channels:**", client.channels.size, true)
  .addField("**Current Version:**", "0.1 Alpha", true)
  .setThumbnail('https://cdn2.iconfinder.com/data/icons/clean-and-simple/153/Settings-128.png')
