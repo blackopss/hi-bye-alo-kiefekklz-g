@@ -128,8 +128,8 @@ client.login(process.env.SECERT_TOKEN);
 // ///End
 // ///id
 
-function random(length) {
-Math.floor((Math.random() * length));
+function random(xlenght) {
+return Math.floor((Math.random() * xlenght));
 }
 
 
