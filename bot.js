@@ -220,203 +220,203 @@ else if(message.content.startsWith(prefix + "tickle")) {
 }
 });
 
-//id(embed)
-client.on('message', message => {
-    if (message.content === prefix + ("id")) {
-        var args = message.content.split(" ").slice(1);
-        var men = message.mentions.users.first();
-           var heg;
-           if(men) {
-               heg = men
-           } else {
-               heg = message.author
-           }
-         var mentionned = message.mentions.members.first();
-            var h;
-           if(mentionned) {
-               h = mentionned
-           } else {
-               h = message.member
-           }
-                  moment.locale('eng-TN');
-         var id = new  Discord.RichEmbed()
-       .setColor("RANDOM")
-           .setThumbnail(message.author.avatarURL)
-           .setAuthor(` ${message.author.username} `, message.author.avatarURL)
-         .addField('Created At:', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
-       .addField('Joined At: ', `${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-       .setFooter(`#${user.discriminator}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
-       message.channel.send(id)
-   }
-})
-//end
+// //id(embed)
+// client.on('message', message => {
+//     if (message.content === prefix + ("id")) {
+//         var args = message.content.split(" ").slice(1);
+//         var men = message.mentions.users.first();
+//            var heg;
+//            if(men) {
+//                heg = men
+//            } else {
+//                heg = message.author
+//            }
+//          var mentionned = message.mentions.members.first();
+//             var h;
+//            if(mentionned) {
+//                h = mentionned
+//            } else {
+//                h = message.member
+//            }
+//                   moment.locale('eng-TN');
+//          var id = new  Discord.RichEmbed()
+//        .setColor("RANDOM")
+//            .setThumbnail(message.author.avatarURL)
+//            .setAuthor(` ${message.author.username} `, message.author.avatarURL)
+//          .addField('Created At:', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
+//        .addField('Joined At: ', `${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
+//        .setFooter(`#${user.discriminator}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
+//        message.channel.send(id)
+//    }
+// })
+// //end
 
 
 
-///Server icon
-client.on("message", message => {
-    const prefix = "."
+// ///Server icon
+// client.on("message", message => {
+//     const prefix = "."
               
-          if(!message.channel.guild) return;
-   if(message.author.bot) return;
-      if(message.content === prefix + "icon"){ 
-          const embed = new Discord.RichEmbed()
+//           if(!message.channel.guild) return;
+//    if(message.author.bot) return;
+//       if(message.content === prefix + "icon"){ 
+//           const embed = new Discord.RichEmbed()
   
-      .setTitle(`This is  ** ${message.guild.name} **  icon !`)
-  .setAuthor(message.author.username, message.guild.iconrURL)
-    .setColor(0x164fe3)
-    .setImage(message.guild.iconURL)
-    .setURL(message.guild.iconrURL)
-                    .setTimestamp()
+//       .setTitle(`This is  ** ${message.guild.name} **  icon !`)
+//   .setAuthor(message.author.username, message.guild.iconrURL)
+//     .setColor(0x164fe3)
+//     .setImage(message.guild.iconURL)
+//     .setURL(message.guild.iconrURL)
+//                     .setTimestamp()
 
-   message.channel.send({embed});
-      }
-  });
-///end
+//    message.channel.send({embed});
+//       }
+//   });
+// ///end
 
-///avatar
-client.on('message', message => {
-    if (message.content.startsWith(".avatar")) {
-        const user = message.mentions.users.first() || message.author
-        const embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setImage(`${user.avatarURL}`)
-        .setTitle("Avatar URL")
-        .setURL(user.avatarURL)
-      message.channel.send(embed);
-    }
-});
-///end
+// ///avatar
+// client.on('message', message => {
+//     if (message.content.startsWith(".avatar")) {
+//         const user = message.mentions.users.first() || message.author
+//         const embed = new Discord.RichEmbed()
+//         .setColor("RANDOM")
+//         .setImage(`${user.avatarURL}`)
+//         .setTitle("Avatar URL")
+//         .setURL(user.avatarURL)
+//       message.channel.send(embed);
+//     }
+// });
+// ///end
 
-//bot-menu
-client.on('message', message => {
-    if (message.content === ".bot") {
-    if(!message.channel.guild) return;
-    if (!devs.includes(message.author.id)) return;
-    let embed = new Discord.RichEmbed()
- .setColor('RANDOM')
- .setTitle(`${client.user.username}'s status.`)
- .addField("**Servers Size:**" , client.guilds.size, true)
- .addField("**Members Size:**", `${client.users.filter(user => user.presence.status === "online") + client.users.filter(user => user.presence.status === "dnd") + client.users.filter(user => user.presence.status === "idle")} total(${client.users.size})`, true)
- .addField("**Channels:**", client.channels.size, true)
- .addField("**Current Version:**", "0.1 Alpha", true)
- .setThumbnail('https://cdn2.iconfinder.com/data/icons/clean-and-simple/153/Settings-128.png')
- message.channel.send(embed);   
-}
-});
-///end 
+// //bot-menu
+// client.on('message', message => {
+//     if (message.content === ".bot") {
+//     if(!message.channel.guild) return;
+//     if (!devs.includes(message.author.id)) return;
+//     let embed = new Discord.RichEmbed()
+//  .setColor('RANDOM')
+//  .setTitle(`${client.user.username}'s status.`)
+//  .addField("**Servers Size:**" , client.guilds.size, true)
+//  .addField("**Members Size:**", `${client.users.filter(user => user.presence.status === "online") + client.users.filter(user => user.presence.status === "dnd") + client.users.filter(user => user.presence.status === "idle")} total(${client.users.size})`, true)
+//  .addField("**Channels:**", client.channels.size, true)
+//  .addField("**Current Version:**", "0.1 Alpha", true)
+//  .setThumbnail('https://cdn2.iconfinder.com/data/icons/clean-and-simple/153/Settings-128.png')
+//  message.channel.send(embed);   
+// }
+// });
+// ///end 
 
-//ping-socket
-client.on('message', message => {
-    if (message.content.startsWith('.ping')) {
-               if(!message.channel.guild) return;
-    message.react(':thumbsup::skin-tone-1: ')
-    if (message.author.bot) return;
-        message.channel.sendMessage("**Pinging...**").then((message)=> {
+// //ping-socket
+// client.on('message', message => {
+//     if (message.content.startsWith('.ping')) {
+//                if(!message.channel.guild) return;
+//     message.react(':thumbsup::skin-tone-1: ')
+//     if (message.author.bot) return;
+//         message.channel.sendMessage("**Pinging...**").then((message)=> {
     
-         message.edit(`**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\``);
+//          message.edit(`**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\``);
     
-        })
-        }
+//         })
+//         }
     
-    });
-//end
+//     });
+// //end
 
 
 
-client.on('guildMemberAdd', member => {
-  if(!ar[member.guild.id]) ar[member.guild.id] = {
-  onoff: 'Off',
-  role: 'Member'
-  }
-  if(ar[member.guild.id].onoff === 'Off') return;
-member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
-})
+// client.on('guildMemberAdd', member => {
+//   if(!ar[member.guild.id]) ar[member.guild.id] = {
+//   onoff: 'Off',
+//   role: 'Member'
+//   }
+//   if(ar[member.guild.id].onoff === 'Off') return;
+// member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
+// })
 
-client.on('message', message => { 
-  var sender = message.author
+// client.on('message', message => { 
+//   var sender = message.author
 
-if(!message.guild) return
-  if(!ar[message.guild.id]) ar[message.guild.id] = {
-  onoff: 'Off',
-  role: 'Member'
-  }
+// if(!message.guild) return
+//   if(!ar[message.guild.id]) ar[message.guild.id] = {
+//   onoff: 'Off',
+//   role: 'Member'
+//   }
 
-if(message.content.startsWith(prefix + `autorole`)) {
-  let perms = message.member.hasPermission(`MANAGE_ROLES`)
+// if(message.content.startsWith(prefix + `autorole`)) {
+//   let perms = message.member.hasPermission(`MANAGE_ROLES`)
 
-  if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
-  let args = message.content.split(" ").slice(1)
-  if(!args.join(" ")) return message.reply(`${prefix}autorole toggle/set [ROLE NAME]`)
-  let state = args[0]
-  if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/set [ROLE NAME]`) 
-    if(state.trim().toLowerCase() == 'toggle') { 
-     if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**The Autorole Is __𝐎𝐍__ !**`), ar[message.guild.id].onoff = 'On']
-     if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**The Autorole Is __𝐎𝐅𝐅__ !**`), ar[message.guild.id].onoff = 'Off']
-    }
-   if(state.trim().toLowerCase() == 'set') {
-   let newRole = message.content.split(" ").slice(2).join(" ")
-   if(!newRole) return message.reply(`${prefix}autorole set [ROLE NAME]`)
-     if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
-    ar[message.guild.id].role = newRole
-     message.channel.send(`**The AutoRole Has Been Changed to ${newRole}.**`)
-   } 
+//   if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
+//   let args = message.content.split(" ").slice(1)
+//   if(!args.join(" ")) return message.reply(`${prefix}autorole toggle/set [ROLE NAME]`)
+//   let state = args[0]
+//   if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/set [ROLE NAME]`) 
+//     if(state.trim().toLowerCase() == 'toggle') { 
+//      if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**The Autorole Is __𝐎𝐍__ !**`), ar[message.guild.id].onoff = 'On']
+//      if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**The Autorole Is __𝐎𝐅𝐅__ !**`), ar[message.guild.id].onoff = 'Off']
+//     }
+//    if(state.trim().toLowerCase() == 'set') {
+//    let newRole = message.content.split(" ").slice(2).join(" ")
+//    if(!newRole) return message.reply(`${prefix}autorole set [ROLE NAME]`)
+//      if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
+//     ar[message.guild.id].role = newRole
+//      message.channel.send(`**The AutoRole Has Been Changed to ${newRole}.**`)
+//    } 
          
-  }
+//   }
  
-if(message.content === prefix + 'autorole info') {
-    let perms = message.member.hasPermission(`MANAGE_GUILD`) 
-    if(!perms) return message.reply(`You don't have permissions.`)
-    var embed = new Discord.RichEmbed()
+// if(message.content === prefix + 'autorole info') {
+//     let perms = message.member.hasPermission(`MANAGE_GUILD`) 
+//     if(!perms) return message.reply(`You don't have permissions.`)
+//     var embed = new Discord.RichEmbed()
 
-.addField(`Autorole : :sparkles:  `, `
+// .addField(`Autorole : :sparkles:  `, `
 
-State : __${ar[message.guild.id].onoff}__
-Role : __${ar[message.guild.id].role}__`)
-
-
-    .setColor(`BLUE`)
-    message.channel.send({embed})
-  }
+// State : __${ar[message.guild.id].onoff}__
+// Role : __${ar[message.guild.id].role}__`)
 
 
-    fs.writeFile("./Data/AutoRole.json", JSON.stringify(ar), (err) => {
-    if (err) console.error(err)
-  });
+//     .setColor(`BLUE`)
+//     message.channel.send({embed})
+//   }
 
 
-});
-//end
+//     fs.writeFile("./Data/AutoRole.json", JSON.stringify(ar), (err) => {
+//     if (err) console.error(err)
+//   });
+
+
+// });
+// //end
 
 
 
 
-///MEMBER
-client.on('message', message => {
-    if(message.content == '.members') {
-    const embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setImage(message.guild.iconURL)
-    .addField(`Status of Members🔋`,'-',   true)
-.addField(`💚 Online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
-.addField(`❤ Do Not Disturb:     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
-.addField(`💛 Idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)   
-.addField(`🖤 Offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true) 
-.addField(`💙  All:  ${message.guild.memberCount}`,'-',   true)         
-         message.channel.send({embed});
+// ///MEMBER
+// client.on('message', message => {
+//     if(message.content == '.members') {
+//     const embed = new Discord.RichEmbed()
+//     .setColor('RANDOM')
+//     .setImage(message.guild.iconURL)
+//     .addField(`Status of Members🔋`,'-',   true)
+// .addField(`💚 Online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
+// .addField(`❤ Do Not Disturb:     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
+// .addField(`💛 Idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)   
+// .addField(`🖤 Offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true) 
+// .addField(`💙  All:  ${message.guild.memberCount}`,'-',   true)         
+//          message.channel.send({embed});
 
-    }
-  });
-///end
-//Fetch-Invites
-client.on('message', message => {
-    if(message.content.startsWith(`${prefix}invites`)) {
-        message.guild.fetchInvites().then(invs => {
-          let user = message.mentions.users.first() || message.author
-          let personalInvites = invs.filter(i => i.inviter.id === user.id);
-          let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-    message.channel.send(`${user} has ${inviteCount} invites.`);
-    });
-      }
-});
-//end
+//     }
+//   });
+// ///end
+// //Fetch-Invites
+// client.on('message', message => {
+//     if(message.content.startsWith(`${prefix}invites`)) {
+//         message.guild.fetchInvites().then(invs => {
+//           let user = message.mentions.users.first() || message.author
+//           let personalInvites = invs.filter(i => i.inviter.id === user.id);
+//           let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+//     message.channel.send(`${user} has ${inviteCount} invites.`);
+//     });
+//       }
+// });
+// //end
