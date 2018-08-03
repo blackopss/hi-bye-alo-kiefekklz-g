@@ -640,3 +640,28 @@ client.on('message', message => {
 });
 ///end
 
+client.on('message', message => {
+    if(message.content.split(' ')[0] == prefix + 'bc') {
+        if (!devs.includes(message.author.id)) return;
+            if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`⚠ | **${message.author.username}, it doesn't look like you can use that. **`);
+        if (message.author.id === client.user.id) return;
+        if (message.guild) {
+       let embed = new Discord.RichEmbed()
+        let args = message.content.split(' ').slice(1).join(' ');
+        if (!args[1]) {
+    message.channel.send(`**You Have to Provide a Message**`);
+    return;
+    }
+            message.guild.members.forEach(m => {
+                var bc = new Discord.RichEmbed()
+                .setThumbnail(message.guild.iconURL)
+                .setFooter(`Sent By: ${message.author.username}#${message.author.discriminator}`)
+                .setDescription(args)
+                .setColor('RANDOM')
+                // m.send(`[${m}]`);
+                m.send({embed: bc}).catch(err => {console.log("[Broadcast] Couldn't send message to this user because he's closing his DM!")});
+            });
+            message.channel.send("**:loudspeaker: | Sending The Broadcast ....**");
+        }
+        }
+});
