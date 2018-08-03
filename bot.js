@@ -655,7 +655,7 @@ client.on('message', message => {
            if(mentionned) {
                h = mentionned
            } else {
-               h = message.author;
+               h = message.member
            }
                   moment.locale('eng-TN');
          var id = new  Discord.RichEmbed()
