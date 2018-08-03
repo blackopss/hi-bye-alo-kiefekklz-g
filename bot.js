@@ -3,7 +3,7 @@ const fs = require("fs");
 var Canvas = require('canvas')
 var jimp = require('jimp')
 var moment = require("moment");
-const devs = ['431150885549113344','244423000802328576','343383616895713290'];
+const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
 const adminprefix = "!!";
 var data = JSON.parse(fs.readFileSync('data.json','utf8'))
 const client = new Discord.Client();
@@ -711,3 +711,19 @@ client.on('message', message => {
     }
 });
 ///end
+
+//bot-menu
+client.on('message', message => {
+    if (message.content === ".bot") {
+           if(!message.channel.guild) return;
+           if (!devs.includes(message.author.id)) return;
+    let embed = new Discord.RichEmbed()
+ .setColor('RANDOM')
+ .setTitle('Bot Menu')
+ .addField("**Servers Size:**" , client.guilds.size)
+ .addField("**Members Size:**", client.users.size)
+ .addField("**Channels:**", client.channels.size)
+ .setTimestamp()
+ message.channel.sendEmbed(embed);   
+}
+});
