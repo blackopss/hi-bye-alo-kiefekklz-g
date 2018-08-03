@@ -1,11 +1,7 @@
 const Discord = require('discord.js');
 const fs = require("fs");
-var Canvas = require('canvas')
-var jimp = require('jimp')
 var moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
-const adminprefix = "!!";
-var data = JSON.parse(fs.readFileSync('data.json','utf8'))
 const client = new Discord.Client();
 const prefix = '.'
 client.login(process.env.SECERT_TOKEN);
@@ -140,7 +136,7 @@ Math.floor((Math.random() * length));
 client.on('message', message => {
 if(message.channel.type !== "text") return; 
 let args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first() || message.author
+let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
