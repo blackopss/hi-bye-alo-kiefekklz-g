@@ -831,7 +831,7 @@ client.on('message', message => {
 .addField(`💚 Online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
 .addField(`❤ Do Not Disturb:     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
 .addField(`💛 Idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)   
-.addField(`🖤 Ofline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true) 
+.addField(`🖤 Offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true) 
 .addField(`💙  All:  ${message.guild.memberCount}`,'-',   true)         
          message.channel.send({embed});
 
