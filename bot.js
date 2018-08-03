@@ -133,7 +133,7 @@ function random(xlenght) {
     return Math.floor((Math.random() * xlenght));
 }
 
-function errormsg(err) {
+function errormsg(err, cmd) {
     message.channel.send(errmsg) 
     client.channels.get("475028391473709068").send(`**:warning: Error**`, {embed: {
     description: err,
@@ -148,7 +148,7 @@ function errormsg(err) {
         }, 
         {
         name: "**command**",
-        value: "hug"
+        value: cmd
         }
     ]}})
     return; 
@@ -178,7 +178,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "hug"))
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
@@ -189,7 +189,7 @@ else if(message.content.startsWith(`${prefix}kiss`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a kiss" : `**${user.user.username}** you have been kissed by **${message.author.username}**`, {files:
     [kiss[random(kiss.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "kiss"))
 }
 
 else if(message.content.startsWith(`${prefix}slap`)) {
@@ -200,7 +200,7 @@ else if(message.content.startsWith(`${prefix}slap`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "u SlApPeD ur Slef!?!?" : `**${user.user.username}** you have been slapped by **${message.author.username}**`, {files:
     [slap[random(slap.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "slap"))
 }
 
 else if(message.content.startsWith(`${prefix}pat`)) {
@@ -211,7 +211,7 @@ else if(message.content.startsWith(`${prefix}pat`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a pat" : `**${user.user.username}** you have been patted by **${message.author.username}**`, {files:
     [pat[random(pat.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "pat"))
 }
 
 else if(message.content.startsWith(`${prefix}cuddle`)) {
@@ -222,7 +222,7 @@ else if(message.content.startsWith(`${prefix}cuddle`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a cuddle" : `**${user.user.username}** you have been cuddled by **${message.author.username}**`, {files:
     [cuddle[random(cuddle.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "cuddle"))
 }
 
 else if(message.content.startsWith(`${prefix}poke`)) {
@@ -233,7 +233,7 @@ else if(message.content.startsWith(`${prefix}poke`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "U PoKEd Ur SeLf! r U sCared?" : `**${user.user.username}** you have been poked by **${message.author.username}**`, {files:
     [poke[random(poke.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "poke"))
 }
 
 else if(message.content.startsWith(`${prefix}tickle`)) {
@@ -244,7 +244,7 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
     [tickle[random(tickle.length)]]
-    }).catch(err => errormsg(err))
+    }).catch(err => errormsg(err, "tickle"))
 }
 });
 
