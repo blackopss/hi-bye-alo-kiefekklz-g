@@ -700,18 +700,13 @@ client.on("message", message => {
 ///avatar
 client.on('message', message => {
     if (message.content.startsWith(".avatar")) {
-        var mentionned = message.mentions.users.first();
-    var x5bzm;
-      if(mentionned){
-          var x5bzm = mentionned;
-      } else {
-          var x5bzm = message.author;
-          
-      }
+        const user = message.mentions.users.first() || message.author
         const embed = new Discord.RichEmbed()
         .setColor("RANDOM")
-        .setImage(`${x5bzm.avatarURL}`)
-      message.channel.sendEmbed(embed);
+        .setImage(`${user.avatarURL}`)
+        .setTitle("Avatar URL")
+        .setURL(user.avatarURL)
+      message.channel.send(embed);
     }
 });
 ///end
@@ -719,17 +714,17 @@ client.on('message', message => {
 //bot-menu
 client.on('message', message => {
     if (message.content === ".bot") {
-           if(!message.channel.guild) return;
-           if (!devs.includes(message.author.id)) return;
+    if(!message.channel.guild) return;
+    if (!devs.includes(message.author.id)) return;
     let embed = new Discord.RichEmbed()
  .setColor('RANDOM')
- .setTitle('Bot Menu')
- .addField("**Servers Size:**" , client.guilds.size)
- .addField("**Members Size:**", client.users.size)
- .addField("**Channels:**", client.channels.size)
- .setTimestamp()
+ .setTitle(`${client.user.username}'s status.`)
+ .addField("**Servers Size:**" , client.guilds.size, true)
+ .addField("**Members Size:**", `${client.users.filter(user => user.presence.status === "online" + user.presence.status === "dnd" + user.presence.status === "idle")} total(${client.users.size})`, true)
+ .addField("**Channels:**", client.channels.size, true)
+ .addField("**Current Version:**", "0.1 Alpha", true)
  .setThumbnail('https://cdn2.iconfinder.com/data/icons/clean-and-simple/153/Settings-128.png')
- message.channel.sendEmbed(embed);   
+ message.channel.send(embed);   
 }
 });
 ///end 
