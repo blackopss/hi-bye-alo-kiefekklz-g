@@ -142,7 +142,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
  if(message.content.startsWith(prefix + 'hug')) {
-    const hug = JSON.parse(fs.readFile(`./data/hug.json`, `utf8`))
+    const hug = fs.readFile(`./data/hug.json`, `utf8`)
     console.log(hug.length)
     console.log(random(hug.length))
     if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
