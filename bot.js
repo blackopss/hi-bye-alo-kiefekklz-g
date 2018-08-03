@@ -170,7 +170,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
 
- if(message.content.startsWith(prefix + 'hug')) {
+ if(message.content.startsWith(`${prefix}hug`)) {
     const { hug } = require(`./data/reactions.js`)
     if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
     if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
@@ -181,70 +181,70 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
     }).catch(err => errormsg(err))
 }
 
-else if(message.content.startsWith(prefix + "kiss")) {
-    const kiss = JSON.parse(fs.readFile(`./data/kiss.json`, `utf8`))
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a kiss" : `**${user.username}** you have been kissed by **${message.author.username}**`,
-    image: {
-        url: kiss[random(hug.length)]
-    } 
-    }})
+else if(message.content.startsWith(`${prefix}kiss`)) {
+    const { kiss } = require(`./data/reactions.js`)
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a kiss" : `**${user.user.username}** you have been kissed by **${message.author.username}**`, {files:
+    [kiss[random(kiss.length)]]
+    }).catch(err => errormsg(err))
 }
 
-else if(message.content.startsWith(prefix + "slap")) {
-    const slap = JSON.parse(fs.readFile(`./data/slap.json`, `utf8`))
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "??? You just slapped yourself" : `**${user.username}** you have been slapped by **${message.author.username}**`,
-    image: {
-        url: slap[random(slap.length)]
-    }
-    }})
+else if(message.content.startsWith(`${prefix}slap`)) {
+    const { slap } = require(`./data/reactions.js`)
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "u SlApPeD ur Slef!?!?" : `**${user.user.username}** you have been slapped by **${message.author.username}**`, {files:
+    [slap[random(slap.length)]]
+    }).catch(err => errormsg(err))
 }
 
-else if(message.content.startsWith(prefix + "pat")) {
-    const pat = JSON.parse(fs.readFile(`./data/pat.json`, `utf8`))
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a pat" : `**${user.username}** you have been patted by **${message.author.username}**`,
-    image: {
-        url: pat[random(pat.length)]
-    }
-    }})
+else if(message.content.startsWith(`${prefix}pat`)) {
+    const { pat } = require(`./data/reactions.js`)
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a pat" : `**${user.user.username}** you have been patted by **${message.author.username}**`, {files:
+    [pat[random(pat.length)]]
+    }).catch(err => errormsg(err))
 }
 
-else if(message.content.startsWith(prefix + "cuddle")) {
-    const cuddle = JSON.parse(fs.readFile(`./data/cuddle.json`, `utf8`))
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a cuddle" : `**${user.username}** you have been cuddled by **${message.author.username}**`,
-    image: {
-        url: cuddle[random(cuddle.length)]
-    }
-    }})
+else if(message.content.startsWith(`${prefix}cuddle`)) {
+    const { cuddle } = require(`./data/reactions.js`)
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a cuddle" : `**${user.user.username}** you have been cuddled by **${message.author.username}**`, {files:
+    [cuddle[random(cuddle.length)]]
+    }).catch(err => errormsg(err))
 }
 
-else if(message.content.startsWith(prefix + "poke")) {
-    const poke = JSON.parse(fs.readFile(`./data/poke.json`, `utf8`))
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "You just poked yourself, congrats dumb." : `**${user.username}** you have been poked by **${message.author.username}**`,
-    image: {
-        url: poke[random(poke.length)]
-    }
-    }})
+else if(message.content.startsWith(`${prefix}poke`)) {
+    const { poke } = require(`./data/reactions.js`)
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "U PoKEd Ur SeLf! r U sCared?" : `**${user.user.username}** you have been poked by **${message.author.username}**`, {files:
+    [poke[random(poke.length)]]
+    }).catch(err => errormsg(err))
 }
 
-else if(message.content.startsWith(prefix + "tickle")) {
-    const tickle = JSON.parse(fs.readFile(`./data/tickle.json`, `utf8`))
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you.)`)
-    message.channel.send("", {embed: {
-    description: (user.id === message.author.id) ? "tIckLeD YoUrSleF!!" : `**${user.username}** you have been tickled by **${message.author.username}**`,
-    image: {
-        url: tickle[random(tickle.length)]
-    }
-    }})
+else if(message.content.startsWith(`${prefix}tickle`)) {
+    const { tickle } = require(`./data/reactions.js`)
+    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
+    [tickle[random(tickle.length)]]
+    }).catch(err => errormsg(err))
 }
 });
 
