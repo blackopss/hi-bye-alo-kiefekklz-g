@@ -456,7 +456,7 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 
 }else if(message.content.startsWith(`${prefix}ping`)) {
     message.channel.sendMessage("**Pinging...**").then((message)=> {
-    message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord AP <:disc:475249489607917580> ** \`${client.ping} ms\``);
+    message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
   }).catch(err => errormsg(message, err, "ping"))
 }
 else if(message.content.startsWith(`${prefix}tempmute`)){
@@ -465,23 +465,7 @@ else if(message.content.startsWith(`${prefix}tempmute`)){
   if(!tomute) return message.reply("Couldn't find user.");
   if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them!");
   let muterole = message.guild.roles.find(`name`, "Muted");
-  if(!muterole){
-    try{
-      muterole = await message.guild.createRole({
-        name: "Muted",
-        color: "#000000",
-        permissions:[]
-      })
-      message.guild.channels.forEach(async (channel, id) => {
-        await channel.overwritePermissions(muterole, {
-          SEND_MESSAGES: false,
-          ADD_REACTIONS: false
-        });
-      });
-    }catch(e){
-      console.log(e.stack);
-    }
-  }
+  if(!muterole) return message.reply("There's No Muted Role");
   let mutetime = args[1];
   if(!mutetime) return message.reply("You didn't specify a time!");
 
