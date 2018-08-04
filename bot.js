@@ -10,6 +10,7 @@ const client = new Client({
     messageSweepInterval: 60
   });
 const prefix = '.'
+const commands = JSON.parse(fs.readFileSync("data/commands.json", "utf8"))
 client.login(process.env.SECERT_TOKEN);
 
 
@@ -160,10 +161,18 @@ function errormsg(message, err, cmd) {
     ]}})
     return; 
 }
+function helpcmd(commands, cmd, group, desc, usage) {
+commands[cmd] = {
+group: group,
+desc: desc,
+usage: usage
+}
+}
 /////////////// Other Client Events //////////////////
 client.on("ready", () =>{
 client.user.setActivity(".help | Alpha")
 client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
+console.log(commands)
 })
 client.on("error", (error) => client.channels.get("474245438837620736").send(error))
 /////////////// Other Client Events //////////////////
@@ -191,7 +200,9 @@ message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(er
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
+    helpcmd(commands, "hug", "Action Commands", "Hugs the specified user.", `hug <@user | user username | user ID>`)
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
@@ -303,6 +314,10 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
     message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
   }).catch(err => errormsg(message, err, "ping"))
 }
+////////////////////////////////////////////////////////////////////////
+fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
+    if (err) console.error(err)
+  });
 });
 
 
@@ -359,3 +374,4 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 //     }
 //   });
 // ///end
+
