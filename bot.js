@@ -278,7 +278,7 @@ message.channel.send(new RichEmbed()
 .setColor('GREEN')
 .setDescription(message.guild.roles.map(roles))
 .setAuthor(`${message.guild.name}'s Roles`,message.guild.iconURL)
-).catch(err => errormsg(err, "roles"))
+).catch(err => message.channel.send("hey"))
 }
 });
 
