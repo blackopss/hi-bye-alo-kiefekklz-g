@@ -272,13 +272,12 @@ message.channel.send(new RichEmbed()
 ).catch(err => errormsg(err, "server"))
 }
 else if(message.content.startsWith(`${prefix}roles`)) {
-const roles = message.guild.roles.map(r => r.position).sort(function(b,a) {return a-b})
-console.log(roles)
+const roles = message.guild.roles.map(r => r.position).sort(function(b,a) {return a-b}).map(m => m.name)
 message.channel.send(new RichEmbed()
 .setColor('GREEN')
-.setDescription(message.guild.roles.map(roles))
+.setDescription(roles)
 .setAuthor(`${message.guild.name}'s Roles`,message.guild.iconURL)
-).catch(err => message.channel.send("hey"))
+).catch(err => errormsg(err, "roles"))
 }
 });
 
