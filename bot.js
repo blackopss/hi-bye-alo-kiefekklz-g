@@ -135,7 +135,7 @@ function random(xlenght) {
 
 function errormsg(err, cmd) {
     message.channel.send(errmsg) 
-    client.channels.get("475028391473709068").send(`**:warning: Error**`, {embed: {
+    client.channels.get("474245438837620736").send(`**:warning: Error**`, {embed: {
     description: err,
     fields: [
         {
@@ -247,12 +247,15 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
     }).catch(err => errormsg(err, "tickle"))
 } 
 else if(message.content.startsWith(`${prefix}avatar`)) {
-    message.channel.send(new RichEmbed()
+user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+if(!message.mentions.users.first() || !args[0]) user = message.member
+if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+message.channel.send(new RichEmbed()
 .setTitle(`${user.username}'s Avatar URL`)
-.setURL(user.avatarURL)
-.setImage(user.avatarURL)
+.setURL(user.user.avatarURL)
+.setImage(user.user.avatarURL)
 .setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
-)
+).catch(err => errormsg(err, "avatar"))
 }
 else if (message.content.startsWith(`${prefix}server`)) {
 const vlevel = ['None', 'Low', 'Medium', 'High', 'Ultra-High']
@@ -260,12 +263,12 @@ message.channel.send(new RichEmbed()
 .setAuthor(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL)
 .addField('🛡 Security', vlevel[message.guild.verificationLevel], true)
 .addField('🌐 Region', message.guild.region, true)
-.addField("👑 Owner", `${message.guild.owner.user.username} (${message.guild.owner.id})`, true)
-.addField("👥 Members", `${message.guild.members.size} total (${client.users.filter(user => user.presence.status === "online" + user.presence.status === "dnd" + user.presence.status === 'idle').size} total(${client.users.size} online)`, true)
+.addField("👑 Owner", `<@${message.guild.owner.id}>`, true)
+.addField("👥 Members", `${message.guild.members.size} total (**${message.guild.members.filter(user => user.presence.status === "online" + user.presence.status === "dnd" + user.presence.status === 'idle').size}** online)`, true)
 .addField("🗨 Channels", `**${message.guild.channels.filter(c => c.type === 'category').size}** Categories | **${message.guild.channels.filter(c => c.type === 'text').size}** Text | **${message.guild.channels.filter(c => c.type === 'voice').size}** Voice`, true)
 .addField("🔐 Roles", `**${message.guild.roles.size}** role. use **${prefix}roles** to view a list of rules`, true)
 .setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
-)
+).catch(err => errormsg(err, "server"))
 }
 });
 
