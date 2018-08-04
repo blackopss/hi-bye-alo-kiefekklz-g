@@ -161,7 +161,7 @@ function errormsg(message, err, cmd) {
     ]}})
     return; 
 }
-function helpcmd(commands, cmd, name, role, group, desc, usage) {
+function helpcmd(commands, cmd, role, group, desc, usage) {
 commands[cmd] = {
 name: cmd,
 role: role,
