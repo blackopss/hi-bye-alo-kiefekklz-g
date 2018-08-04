@@ -290,7 +290,8 @@ if(devs.includes(message.author.id)) {
 message.channel.send(`**Rebooting....**`).then(client.destroy())
 .catch(err => errormsg(err, "reboot"))
 }
-}else if(message.content.startsWith(`${prefix}ping`)) {
+}
+else if(message.content.startsWith(`${prefix}ping`)) {
     message.channel.sendMessage("**Pinging...**").then((message)=> {
 
         message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.pings[1]} ms\``);
