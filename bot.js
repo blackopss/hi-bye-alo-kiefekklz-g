@@ -470,14 +470,16 @@ else if(message.content.startsWith(`${prefix}tempmute`)){
     if(!muterole) return message.reply(':x:Please Create Muted Role');
     let mutetime = args[1];
     if(!mutetime) return message.reply(":x: You didn't specify a time!");
-  
+    if(tomute.hasRole(muterole.id)) return message.reply('Already Muted!');
     (tomute.addRole(muterole.id));
     message.channel.send(`**<@${tomute.id}> :zipper_mouth:  has been muted for ${ms(ms(mutetime))}**`);
     setTimeout(function(){
       tomute.removeRole(muterole.id);
       message.channel.send(`**<@${tomute.id}> has been unmuted!**`);
     }, ms(mutetime));
-  
+
+
+
   
   }
 ////////////////////////////////////////////////////////////////////////
