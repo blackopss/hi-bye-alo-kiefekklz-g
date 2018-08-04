@@ -460,24 +460,24 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
   }).catch(err => errormsg(message, err, "ping"))
 }
 else if(message.content.startsWith(`${prefix}tempmute`)){
+    if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply(":x: You Don't Premission to do it").catch(console.error);
     let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.reply(":x: Couldn't find user.").catch(console.error);
-  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!").catch(console.error);
-  let muterole = message.guild.roles.find(`name`, "Muted").catch(console.error);
-  if(!muterole) return message.reply(':x:Please Create Muted Role').catch(console.error);
-  let mutetime = args[1];
-  if(!mutetime) return message.reply(":x: You didn't specify a time!").catch(console.error);
-
-  (tomute.addRole(muterole.id));
-  message.channel.send(`**<@${tomute.id}> :zipper_mouth:  has been muted for ${ms(ms(mutetime))}**`).catch(console.error);
-
-  setTimeout(function(){
-    tomute.removeRole(muterole.id);
-    message.channel.send(`**<@${tomute.id}> has been unmuted!**`).catch(console.error);
-  }, ms(mutetime));
-
-
-}
+    if(!tomute) return message.reply(":x: Couldn't find user.");
+    if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!");
+    let muterole = message.guild.roles.find(`name`, "Muted");
+    if(!muterole) return message.reply(':x:Please Create Muted Role');
+    let mutetime = args[1];
+    if(!mutetime) return message.reply(":x: You didn't specify a time!");
+  
+    (tomute.addRole(muterole.id));
+    message.channel.send(`**<@${tomute.id}> :zipper_mouth:  has been muted for ${ms(ms(mutetime))}**`);
+    setTimeout(function(){
+      tomute.removeRole(muterole.id);
+      message.channel.send(`**<@${tomute.id}> has been unmuted!**`);
+    }, ms(mutetime));
+  
+  
+  }
 ////////////////////////////////////////////////////////////////////////
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
