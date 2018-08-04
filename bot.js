@@ -9,6 +9,8 @@ const client = new Client({
     messageCacheLifetime: 120,
     messageSweepInterval: 60
   });
+
+const ms = require('ms');
 const prefix = '.'
 const commands = JSON.parse(fs.readFileSync("data/commands.json", "utf8"))
 client.login(process.env.SECERT_TOKEN);
