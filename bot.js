@@ -144,15 +144,18 @@ function errormsg(message, err, cmd) {
     fields: [
         {
         name: "**server**",
-        value: message.guild.name
+        value: message.guild.name,
+        inline: true
         }, 
         {
         name: "**user**",
-        value: message.author.username
+        value: message.author.username,
+        inline: true
         }, 
         {
         name: "**command**",
-        value: cmd
+        value: cmd,
+        inline: true
         }
     ]}})
     return; 
