@@ -1,6 +1,10 @@
 {
-  "name": "music-bot",
-  "version": "1.0.0",
+  "name": "megium-alpha",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "discord.js": "^11.3.2",
     "enmap": "^2.5.2",
