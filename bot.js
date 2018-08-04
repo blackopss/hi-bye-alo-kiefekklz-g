@@ -460,7 +460,6 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
   }).catch(err => errormsg(message, err, "ping"))
 }
 else if(message.content.startsWith(`${prefix}tempmute`)){
-    if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply(":x: You Don't Premission to do it").catch(console.error);
     let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!tomute) return message.reply(":x: Couldn't find user.");
     if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!");
