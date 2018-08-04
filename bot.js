@@ -161,8 +161,9 @@ function errormsg(message, err, cmd) {
     ]}})
     return; 
 }
-function helpcmd(commands, cmd, role, group, desc, usage) {
+function helpcmd(commands, cmd, name, role, group, desc, usage) {
 commands[cmd] = {
+name: cmd,
 role: role,
 group: group,
 desc: desc,
@@ -173,17 +174,17 @@ usage: usage
 client.on("ready", () => {
 client.user.setActivity(".help | Alpha")
 client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
-helpcmd(commands, "hug", "user", "Action Commands", "Hugs the specified user.", `${prefix}hug <@user | user username | user ID>`)
-helpcmd(commands, "kiss", "user", "Action Commands", "Kisses the specified user.", `${prefix}kiss <@user | user username | user ID>`)
-helpcmd(commands, "slap", "user", "Action Commands", "Slaps the specified user.", `${prefix}slap <@user | user username | user ID>`)
-helpcmd(commands, "pat", "user", "Action Commands", "Pats the specified user.", `${prefix}pat <@user | user username | user ID>`)
-helpcmd(commands, "cuddle", "user", "Action Commands", "Cuddles the specified user.", `${prefix}cuddle <@user | user username | user ID>`)
-helpcmd(commands, "poke", "user", "Action Commands", "Pokes the specified user.", `${prefix}poke <@user | user username | user ID>`)
-helpcmd(commands, "tickle", "user", "Action Commands", "Tickles the specified user.", `${prefix}tickle <@user | user username | user ID>`)
-helpcmd(commands, "avatar", "user", "Info Commands", "Shows specified user avatar or your avatar.", `${prefix}avatar [@user | user username | user ID]`)
-helpcmd(commands, "server", "user", "Info Commands", "Shows server info.", `${prefix}server`)
-helpcmd(commands, "roles", "user", "Info Commands", "Shows list of the roles in current server.", `${prefix}roles`)
-helpcmd(commands, "ping", "user", "Info Commands", "Shows the bot pings.", `${prefix}ping`)
+helpcmd(commands, "Hug", "user", "Action Commands", "Hugs the specified user.", `${prefix}hug <@user | user username | user ID>`)
+helpcmd(commands, "Kiss", "user", "Action Commands", "Kisses the specified user.", `${prefix}kiss <@user | user username | user ID>`)
+helpcmd(commands, "Slap", "user", "Action Commands", "Slaps the specified user.", `${prefix}slap <@user | user username | user ID>`)
+helpcmd(commands, "Pat", "user", "Action Commands", "Pats the specified user.", `${prefix}pat <@user | user username | user ID>`)
+helpcmd(commands, "Cuddle", "user", "Action Commands", "Cuddles the specified user.", `${prefix}cuddle <@user | user username | user ID>`)
+helpcmd(commands, "Poke", "user", "Action Commands", "Pokes the specified user.", `${prefix}poke <@user | user username | user ID>`)
+helpcmd(commands, "Tickle", "user", "Action Commands", "Tickles the specified user.", `${prefix}tickle <@user | user username | user ID>`)
+helpcmd(commands, "Avatar", "user", "Info Commands", "Shows specified user avatar or your avatar.", `${prefix}avatar [@user | user username | user ID]`)
+helpcmd(commands, "Server", "user", "Info Commands", "Shows server info.", `${prefix}server`)
+helpcmd(commands, "Roles", "user", "Info Commands", "Shows list of the roles in current server.", `${prefix}roles`)
+helpcmd(commands, "Ping", "user", "Info Commands", "Shows the bot pings.", `${prefix}ping`)
 })
 client.on("error", (error) => client.channels.get("474245438837620736").send(error))
 /////////////// Other Client Events //////////////////
@@ -207,7 +208,7 @@ if (message.content === `${prefix}help`) {
     for (var cmd in commands) {
         if (commands[cmd].role.toUpperCase() === 'USER') {
             commandsFound++
-            embed.addField(`${commands[cmd]}`, `**Description:** ${commands[cmd].desc}\n**Usage:** ${prefix + commands[cmd].usage}`);
+            embed.addField(`${commands[cmd].name}`, `**Description:** ${commands[cmd].desc}\n**Usage:** ${prefix + commands[cmd].usage}`);
         }
 
     }
