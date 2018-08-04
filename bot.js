@@ -461,7 +461,6 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 }
 else if(message.content.startsWith(`${prefix}tempmute`)){
     let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if (message.mentions.users.size < 1) return message.reply(':x: Please mention one user ').catch(console.error);
   if(!tomute) return message.reply(":x: Couldn't find user.").catch(console.error);
   if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!").catch(console.error);
   let muterole = message.guild.roles.find(`name`, "Muted").catch(console.error);
