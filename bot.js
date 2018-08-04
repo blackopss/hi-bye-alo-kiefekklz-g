@@ -180,7 +180,6 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 if(message.content.startsWith(`${prefix}help`)) {
 message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(err => {
     message.channel.send(`:x: I cannot send the help to you because you are blocking dms.`)
-    errormsg(message, err, "help");
 })
 }
 
