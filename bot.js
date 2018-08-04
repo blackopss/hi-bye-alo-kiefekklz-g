@@ -342,7 +342,7 @@ if (message.content === `${prefix}help`) {
     const { hug } = require(`./data/reactions.js`)
     if(user.bot) return message.channel.send(`You can't do that to bots.`)
     if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.array() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    user = message.mentions.members.array().join(",") || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
