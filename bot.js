@@ -272,7 +272,7 @@ message.channel.send(new RichEmbed()
 ).catch(err => errormsg(err, "server"))
 }
 else if(message.content.startsWith(`${prefix}roles`)) {
-const roles = message.guild.roles.filter(m => m.position).sort(function(b,a) {return a - b}).map(m => m.name).join(" ");
+const roles = message.guild.roles.sort(function(b,a) {return a.position - b.position}).map(m => m.name).join(" ");
 message.channel.send(new RichEmbed()
 .setColor('GREEN')
 .setDescription(roles)
