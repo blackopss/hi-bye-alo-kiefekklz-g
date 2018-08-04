@@ -479,27 +479,28 @@ else if(message.content.startsWith(`${prefix}mute`)){
     if(!mutetime){
         user.addRole(muterole.id)
         message.channel.send(`:zipper_mouth: **${user.user.username}** has been muted. because '**${reason}**'.`)
+        user.send(`You've been muted in **${message.guild.name}** for: **${reason}**`)
     } 
     else
     (user.addRole(muterole.id));
     message.channel.send(`:zipper_mouth: **${user.user.username}** has been muted for **${ms(ms(mutetime))}**. because '**${reason}**'`);
-    user.send(`You've been muted in **${message.guild.name}** for: **${reason}**`)
+    user.send(`You've been muted in **${message.guild.name}** for: **${reason}**`, {embed:{
+        fields: [
+            {
+                name: "Duration",
+                value: `**${ms(ms(mutetime))}**`,
+                inline: true
+            },{
+                name: "Muter",
+                value: `**${message.author.username}**`,
+                inline: true
+            }
+        ]
+    }})
     setTimeout(function(){
       user.removeRole(muterole.id);
       message.channel.send(`**${user.username}** has been unmuted!`);
-      user.send(`You've been muted in **${message.guild.name}** for: **${reason}**`, {embed:{
-          fields: [
-              {
-                  name: "Duration",
-                  value: `**${ms(ms(mutetime))}**`,
-                  inline: true
-              },{
-                  name: "Muter",
-                  value: `**${message.author.username}**`,
-                  inline: true
-              }
-          ]
-      }})
+      user.send(`You are no longer muted in **${message.guild.name}**.`)
     }, ms(mutetime));
   }
 ////////////////////////////////////////////////////////////////////////
