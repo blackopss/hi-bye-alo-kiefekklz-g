@@ -1,4 +1,4 @@
-const { Client, RichEmbed } = require('discord.js');
+const { Discord, RichEmbed } = require('discord.js');
 const fs = require("fs");
 const moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
