@@ -264,10 +264,11 @@ message.channel.send(new RichEmbed()
 .addField('🛡 Security', vlevel[message.guild.verificationLevel], true)
 .addField('🌐 Region', message.guild.region, true)
 .addField("👑 Owner", `<@${message.guild.owner.id}>`, true)
-.addField("👥 Members", `${message.guild.members.size} total (**${message.guild.members.filter(user => user.presence.status === "online" + user.presence.status === "dnd" + user.presence.status === 'idle').size}** online)`, true)
+.addField("👥 Members", `${message.guild.members.size} total (**${message.guild.members.filter(user => user.presence.status === "online").size + message.guild.members.filter(user => user.presence.status === "dnd").size + message.guild.members.filter(user => user.presence.status === "idle").size}** online)`, true)
 .addField("🗨 Channels", `**${message.guild.channels.filter(c => c.type === 'category').size}** Categories | **${message.guild.channels.filter(c => c.type === 'text').size}** Text | **${message.guild.channels.filter(c => c.type === 'voice').size}** Voice`, true)
-.addField("🔐 Roles", `**${message.guild.roles.size}** role. use **${prefix}roles** to view a list of rules`, true)
+.addField("🔐 Roles", `**${message.guild.roles.size}** role. use **${prefix}roles** to view a list of roles`, true)
 .setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
+.setColor("GREEN")
 ).catch(err => errormsg(err, "server"))
 }
 });
