@@ -156,7 +156,7 @@ function errormsg(err, cmd) {
 /////////////// Other Client Events //////////////////
 client.on("ready", () =>{
 client.user.setActivity(".help | Alpha")
-client.channels.get("475028391473709068").send(`Waifu's bot is ready.`)
+client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
 })
 client.on("error", (error) => client.channels.get("474245438837620736").send(error))
 /////////////// Other Client Events //////////////////
@@ -287,36 +287,6 @@ message.channel.send(`**Rebooting....**`).then(client.destroy()).catch(err => er
 }
 });
 
-// //id(embed)
-// client.on('message', message => {
-//     if (message.content === prefix + ("id")) {
-//         var args = message.content.split(" ").slice(1);
-//         var men = message.mentions.users.first();
-//            var heg;
-//            if(men) {
-//                heg = men
-//            } else {
-//                heg = message.author
-//            }
-//          var mentionned = message.mentions.members.first();
-//             var h;
-//            if(mentionned) {
-//                h = mentionned
-//            } else {
-//                h = message.member
-//            }
-//                   moment.locale('eng-TN');
-//          var id = new  Discord.RichEmbed()
-//        .setColor("RANDOM")
-//            .setThumbnail(message.author.avatarURL)
-//            .setAuthor(` ${message.author.username} `, message.author.avatarURL)
-//          .addField('Created At:', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
-//        .addField('Joined At: ', `${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-//        .setFooter(`#${user.discriminator}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
-//        message.channel.send(id)
-//    }
-// })
-// //end
 
 
 
@@ -355,109 +325,6 @@ message.channel.send(`**Rebooting....**`).then(client.destroy()).catch(err => er
 // });
 // ///end
 
-// //bot-menu
-// client.on('message', message => {
-//     if (message.content === ".bot") {
-//     if(!message.channel.guild) return;
-//     if (!devs.includes(message.author.id)) return;
-//     let embed = new Discord.RichEmbed()
-//  .setColor('RANDOM')
-//  .setTitle(`${client.user.username}'s status.`)
-//  .addField("**Servers Size:**" , client.guilds.size, true)
-//  .addField("**Members Size:**", `${client.users.filter(user => user.presence.status === "online") + client.users.filter(user => user.presence.status === "dnd") + client.users.filter(user => user.presence.status === "idle")} total(${client.users.size})`, true)
-//  .addField("**Channels:**", client.channels.size, true)
-//  .addField("**Current Version:**", "0.1 Alpha", true)
-//  .setThumbnail('https://cdn2.iconfinder.com/data/icons/clean-and-simple/153/Settings-128.png')
-//  message.channel.send(embed);   
-// }
-// });
-// ///end 
-
-// //ping-socket
-// client.on('message', message => {
-//     if (message.content.startsWith('.ping')) {
-//                if(!message.channel.guild) return;
-//     message.react(':thumbsup::skin-tone-1: ')
-//     if (message.author.bot) return;
-//         message.channel.sendMessage("**Pinging...**").then((message)=> {
-    
-//          message.edit(`**:ping_pong:** \`${Date.now() - message.createdTimestamp} ms\``);
-    
-//         })
-//         }
-    
-//     });
-// //end
-
-
-
-// client.on('guildMemberAdd', member => {
-//   if(!ar[member.guild.id]) ar[member.guild.id] = {
-//   onoff: 'Off',
-//   role: 'Member'
-//   }
-//   if(ar[member.guild.id].onoff === 'Off') return;
-// member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
-// })
-
-// client.on('message', message => { 
-//   var sender = message.author
-
-// if(!message.guild) return
-//   if(!ar[message.guild.id]) ar[message.guild.id] = {
-//   onoff: 'Off',
-//   role: 'Member'
-//   }
-
-// if(message.content.startsWith(prefix + `autorole`)) {
-//   let perms = message.member.hasPermission(`MANAGE_ROLES`)
-
-//   if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
-//   let args = message.content.split(" ").slice(1)
-//   if(!args.join(" ")) return message.reply(`${prefix}autorole toggle/set [ROLE NAME]`)
-//   let state = args[0]
-//   if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/set [ROLE NAME]`) 
-//     if(state.trim().toLowerCase() == 'toggle') { 
-//      if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**The Autorole Is __𝐎𝐍__ !**`), ar[message.guild.id].onoff = 'On']
-//      if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**The Autorole Is __𝐎𝐅𝐅__ !**`), ar[message.guild.id].onoff = 'Off']
-//     }
-//    if(state.trim().toLowerCase() == 'set') {
-//    let newRole = message.content.split(" ").slice(2).join(" ")
-//    if(!newRole) return message.reply(`${prefix}autorole set [ROLE NAME]`)
-//      if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
-//     ar[message.guild.id].role = newRole
-//      message.channel.send(`**The AutoRole Has Been Changed to ${newRole}.**`)
-//    } 
-         
-//   }
- 
-// if(message.content === prefix + 'autorole info') {
-//     let perms = message.member.hasPermission(`MANAGE_GUILD`) 
-//     if(!perms) return message.reply(`You don't have permissions.`)
-//     var embed = new Discord.RichEmbed()
-
-// .addField(`Autorole : :sparkles:  `, `
-
-// State : __${ar[message.guild.id].onoff}__
-// Role : __${ar[message.guild.id].role}__`)
-
-
-//     .setColor(`BLUE`)
-//     message.channel.send({embed})
-//   }
-
-
-//     fs.writeFile("./Data/AutoRole.json", JSON.stringify(ar), (err) => {
-//     if (err) console.error(err)
-//   });
-
-
-// });
-// //end
-
-
-
-
 // ///MEMBER
 // client.on('message', message => {
 //     if(message.content == '.members') {
@@ -475,15 +342,3 @@ message.channel.send(`**Rebooting....**`).then(client.destroy()).catch(err => er
 //     }
 //   });
 // ///end
-// //Fetch-Invites
-// client.on('message', message => {
-//     if(message.content.startsWith(`${prefix}invites`)) {
-//         message.guild.fetchInvites().then(invs => {
-//           let user = message.mentions.users.first() || message.author
-//           let personalInvites = invs.filter(i => i.inviter.id === user.id);
-//           let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-//     message.channel.send(`${user} has ${inviteCount} invites.`);
-//     });
-//       }
-// });
-// //end
