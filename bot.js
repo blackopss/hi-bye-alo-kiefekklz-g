@@ -1,9 +1,9 @@
-const { Discord, RichEmbed } = require('discord.js');
+const { Client, RichEmbed } = require('discord.js');
 const fs = require("fs");
 const moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
 const errmsg = "<:eRrOr:475075170231517184> **Oops, something unexpected happened!** The error was sent to our team and we'll do our best to fix it."
-const client = new Discord.Client({
+const client = new Client({
     disableEveryone: true,
     messageCacheMaxSize: 500,
     messageCacheLifetime: 120,
@@ -166,7 +166,7 @@ client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
 client.on("error", (error) => client.channels.get("474245438837620736").send(error))
 /////////////// Other Client Events //////////////////
 
-client.on('message', message => {
+client.on('message', async function(message) {
 if(message.channel.type !== "text") return; 
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
@@ -293,8 +293,7 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 
 }else if(message.content.startsWith(`${prefix}ping`)) {
     message.channel.sendMessage("**Pinging...**").then((message)=> {
-
-        message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.pings[1]} ms\``);
+    message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
         
   })
 }
