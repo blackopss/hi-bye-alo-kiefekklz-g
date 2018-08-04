@@ -284,7 +284,16 @@ message.channel.send(new RichEmbed()
 if(devs.includes(message.author.id)) {
 message.channel.send(`**Rebooting....**`).then(client.destroy()).catch(err => errormsg(err, "reboot"))
 } else return;
-}
+
+}else if(message.content.startsWit(`${prefix}ping`)) {
+               if(!message.channel.guild) return;
+    if (message.author.bot) return;
+        message.channel.sendMessage("**Pinging...**").then((message)=> {
+    
+         message.edit(`**Time Taken :ping_pong:** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API :purple_heart:** \`${client.pings[1]} ms\``);
+    
+        })
+        }
 });
 
 
