@@ -468,6 +468,7 @@ else if(message.content.startsWith(`${prefix}mute`)){
     if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(":x: You Don't Have Permission");
     if(user.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!");
     let muterole = message.guild.roles.find(`name`, "Muted")
+    if(user.roles.has(muterole.id)) return message.channel.send(`:x: **${user.user.username}** is already muted.`)
     if(!muterole) message.guild.createRole({
         name: "Muted", 
         color: 'BLACK', 
