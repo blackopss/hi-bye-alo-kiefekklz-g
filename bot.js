@@ -477,11 +477,11 @@ else if(message.content.startsWith(`${prefix}mute`)){
     let mutetime = args[1];
     if(!mutetime){
         user.addRole(muterole.id)
-        message.channel.send(`:zipper_mouth: **${user.username}** has been muted. because '**${reason}**'.`)
+        message.channel.send(`:zipper_mouth: **${user.user.username}** has been muted. because '**${reason}**'.`)
     } 
     else
     (user.addRole(muterole.id));
-    message.channel.send(`:zipper_mouth: **${user.username}** has been muted for **${ms(ms(mutetime))}**. because '**${reason}**'`);
+    message.channel.send(`:zipper_mouth: **${user.user.username}** has been muted for **${ms(ms(mutetime))}**. because '**${reason}**'`);
     user.send(`You've been muted in **${message.guild.name}** for: **${reason}**`)
     setTimeout(function(){
       user.removeRole(muterole.id);
