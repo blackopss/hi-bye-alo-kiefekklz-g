@@ -1,7 +1,7 @@
 {
-  "name": "wafiu",
+  "name": "megium",
   "version": "2.1.0",
-  "description": "-- Wafiu --",
+  "description": "-- Megium --",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
@@ -9,7 +9,6 @@
   "dependencies": {
     "discord.js": "^11.3.2",
     "ms": "^2.1.1",
-    "child_process": "^1.0.2",
     "moment": "^2.22.2"
   },
   "engines": {
