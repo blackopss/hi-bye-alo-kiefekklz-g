@@ -161,18 +161,29 @@ function errormsg(message, err, cmd) {
     ]}})
     return; 
 }
-function helpcmd(commands, cmd, group, desc, usage) {
+function helpcmd(commands, cmd, role, group, desc, usage) {
 commands[cmd] = {
+role: role,
 group: group,
 desc: desc,
 usage: usage
 }
 }
 /////////////// Other Client Events //////////////////
-client.on("ready", () =>{
+client.on("ready", () => {
 client.user.setActivity(".help | Alpha")
 client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
-console.log(commands)
+helpcmd(commands, "hug", "user", "Action Commands", "Hugs the specified user.", `${prefix}hug <@user | user username | user ID>`)
+helpcmd(commands, "kiss", "user", "Action Commands", "Kisses the specified user.", `${prefix}kiss <@user | user username | user ID>`)
+helpcmd(commands, "slap", "user", "Action Commands", "Slaps the specified user.", `${prefix}slap <@user | user username | user ID>`)
+helpcmd(commands, "pat", "user", "Action Commands", "Pats the specified user.", `${prefix}pat <@user | user username | user ID>`)
+helpcmd(commands, "cuddle", "user", "Action Commands", "Cuddles the specified user.", `${prefix}cuddle <@user | user username | user ID>`)
+helpcmd(commands, "poke", "user", "Action Commands", "Pokes the specified user.", `${prefix}poke <@user | user username | user ID>`)
+helpcmd(commands, "tickle", "user", "Action Commands", "Tickles the specified user.", `${prefix}tickle <@user | user username | user ID>`)
+helpcmd(commands, "avatar", "user", "Info Commands", "Shows specified user avatar or your avatar.", `${prefix}avatar [@user | user username | user ID]`)
+helpcmd(commands, "server", "user", "Info Commands", "Shows server info.", `${prefix}server`)
+helpcmd(commands, "roles", "user", "Info Commands", "Shows list of the roles in current server.", `${prefix}roles`)
+helpcmd(commands, "ping", "user", "Info Commands", "Shows the bot pings.", `${prefix}ping`)
 })
 client.on("error", (error) => client.channels.get("474245438837620736").send(error))
 /////////////// Other Client Events //////////////////
@@ -186,10 +197,144 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
-if(message.content.startsWith(`${prefix}help`)) {
-message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(err => {
-    message.channel.send(`:x: I cannot send the help to you because you are blocking dms.`)
-})
+if (message.content.startsWith(prefix + 'help')) {
+
+if (message.content === `${prefix}help`) {
+
+    const embed = new RichEmbed()
+        .setColor(0x1D82B6)
+    let commandsFound = 0;
+    for (var cmd in commands) {
+        if (commands[cmd].role.toUpperCase() === 'USER') {
+            commandsFound++
+            embed.addField(`${commands[cmd].name}`, `**Description:** ${commands[cmd].desc}\n**Usage:** ${prefix + commands[cmd].usage}`);
+        }
+
+    }
+
+    embed.setFooter(`Currently showing user commands. To view another group do ${prefix}help [group / command]`)
+    embed.setDescription(`**${commandsFound} commands found** - <> means required, [] means optional`)
+
+    message.author.send({embed})
+    message.channel.send({embed: {
+        color: 0x1D82B6,
+        description: `**Check your DMs ${message.author}!**`
+    }})
+
+} else if (args.join(" ").toUpperCase() === 'GROUPS') {
+
+    let groups = '';
+
+    for (var cmd in commands) {
+        if (!groups.includes(commands[cmd].group)) {
+            groups += `${commands[cmd].group}\n`
+        }
+    }
+
+    message.channel.send({embed: {
+        description:`**${groups}**`,
+        title:"Groups",
+        color: 0x1D82B6
+    }})
+
+    return;
+
+
+} else {
+    let groupFound = '';
+
+    for (var cmd in commands) { // This will see if their is a group named after what the user entered.
+
+        if (args.join(" ").trim().toUpperCase() === commands[cmd].group.toUpperCase()) {
+            groupFound = commands[cmd].group.toUpperCase(); // Lets set the ground found, then break out of the loop.
+            break;
+        }
+
+    }
+
+    if (groupFound != '') { // If a group is found, run this statement.
+
+        // Start of the embed
+        const embed = new RichEmbed()
+            .setColor(0x1D82B6) // You can set this color to whatever you want.
+
+        // Variables
+        let commandsFound = 0; // We also want to tell them how many commands there are for that specific group.
+
+
+        for (var cmd in commands) { // We can use copy and paste again
+
+            // Checks if the group is "users" - and replace type with group
+            if (commands[cmd].group.toUpperCase() === groupFound) {
+                // Lets also count commandsFound + 1 every time it finds a command in the group
+                commandsFound++
+                // Lets add the command field to the embed
+                embed.addField(`${commands[cmd].name}`, `**Description:** ${commands[cmd].desc}\n**Usage:** ${prefix + commands[cmd].usage}`); // This will output something like <commandname>[title] [newline] desc: <description> [newline] usage: <usage
+            }
+
+        }
+
+        // Add some more to the embed - we need to move that out of the for loop.
+        embed.setFooter(`Currently showing ${groupFound} commands. To view another group do ${prefix}help [group / command]`)
+        embed.setDescription(`**${commandsFound} commands found** - <> means required, [] means optional`)
+
+        // We can output it two ways. 1 - Send to DMs, and tell them that they sent to DMs in chat. 2 - Post commands in chat. [since commands take up a lot let's send to DMs]
+        message.author.send({embed})
+        // Post in chat they sent to DMs
+        message.channel.send({embed: {
+            color: 0x1D82B6,
+            description: `**Check your DMs ${message.author}!**`
+        }})
+
+        // Make sure you copy and paste into the right place, lets test it now!
+        return; // We want to make sure we return so it doesnt run the rest of the script after it finds a group! Lets test it!
+
+        // Now lets show groups.
+    }
+
+    // Although, if a group is not found, lets see if it is a command
+
+    // Variables
+    let commandFound = '';
+    let commandDesc = '';
+    let commandUsage = '';
+    let commandGroup = '';
+
+    for (var cmd in commands) { // Copy and paste
+
+        if (args.join(" ").trim().toUpperCase() === commands[cmd].name.toUpperCase()) {
+            commandFound = commands[cmd].name; // Lets change this so it doesnt make it go uppcase
+            commandDesc = commands[cmd].desc;
+            commandUsage = commands[cmd].usage;
+            commandGroup = commands[cmd].group;
+            break;
+        }
+
+    }
+
+    // Lets post in chat if nothing is found!
+    if (commandFound === '') {
+        message.channel.send({embed: {
+            description:`**No group or command found titled \`${args.join(" ")}\`**`,
+            color: 0x1D82B6,
+        }})
+
+    }
+
+    // Since this one is smaller, lets send the embed differently.
+    message.channel.send({embed: {
+        title:'<> means required, [] means optional',
+        color: 0x1D82B6,
+        fields: [{
+            name:commandFound,
+            value:`**Description:** ${commandDesc}\n**Usage:** ${commandUsage}\n**Group:** ${commandGroup}`
+        }]
+    }})
+
+    return; // We want to return here so that it doesnt run the rest of the script also.
+
+}
+
 }
 
  if(message.content.startsWith(`${prefix}hug`)) {
@@ -202,8 +347,6 @@ message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(er
     [hug[random(hug.length)]]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
-    helpcmd(commands, "hug", "Action Commands", "Hugs the specified user.", `hug <@user | user username | user ID>`)
-    console.log(commands)
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
