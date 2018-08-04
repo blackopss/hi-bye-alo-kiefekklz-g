@@ -9,12 +9,10 @@ const client = new Client({
     messageCacheLifetime: 120,
     messageSweepInterval: 60
   });
-
 const ms = require('ms');
 const prefix = '.'
 const commands = JSON.parse(fs.readFileSync("data/commands.json", "utf8"))
 client.login(process.env.SECERT_TOKEN);
-
 
 //By Abady Refactoring
 // client.on('message', message => {
@@ -461,25 +459,47 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
     message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
   }).catch(err => errormsg(message, err, "ping"))
 }
-else if(message.content.startsWith(`${prefix}tempmute`)){
+
+else if(message.content.startsWith(`${prefix}mute`)){
     user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    let reason = args[1]
+    if(!reason) reason = "Unspecified"
     if(!user) return message.reply(":x: Couldn't find user.");
     if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(":x: You Don't Have Permission");
     if(user.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!");
-    let muterole = message.guild.roles.find(`name`, "Muted");
-    if(!muterole) return message.reply(':x: Please Create Muted Role');
+    let muterole = message.guild.roles.find(`name`, "Muted")
+    if(!muterole) message.guild.createRole({
+        name: "Muted", 
+        color: 'BLACK', 
+        permissions: [""],
+        mentionable: false
+    })
     let mutetime = args[1];
-    if(!mutetime) return message.reply(":x: You didn't specify a time!");
+    if(!mutetime){
+        user.addRole(muterole.id)
+        message.channel.send(`:zipper_mouth: **${user.username}** has been muted. because '**${reason}**'.`)
+    } 
+    else
     (user.addRole(muterole.id));
-    message.channel.send(`**<@${user.id}> :zipper_mouth:  has been muted for ${ms(ms(mutetime))}**`);
+    message.channel.send(`:zipper_mouth: **${user.username}** has been muted for **${ms(ms(mutetime))}**. because '**${reason}**'`);
+    user.send(`You've been muted in *${message.guild.name}* for: **${reason}**`)
     setTimeout(function(){
       user.removeRole(muterole.id);
-      message.channel.send(`**<@${user.id}> has been unmuted!**`);
+      message.channel.send(`**${user.username}** has been unmuted!`);
+      user.send(`You've been muted in *${message.guild.name}* for: **${reason}**`, {embed:{
+          fields: [
+              {
+                  name: "Duration",
+                  value: `**${ms(ms(mutetime))}**`,
+                  inline: true
+              },{
+                  name: "Muter",
+                  value: `**${message.author.username}**`,
+                  inline: true
+              }
+          ]
+      }})
     }, ms(mutetime));
-
-
-
-  
   }
 ////////////////////////////////////////////////////////////////////////
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
