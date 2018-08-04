@@ -461,7 +461,6 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 }
 else if(message.content.startsWith(`${prefix}tempmute`)){
     if(!message.author.hasPermission('MANAGE_ROLES')) return message.reply("You Don't Have Premission To Do it!")
-    if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("I Don't Have Permission");
     let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!tomute) return message.reply("Couldn't find user.");
   if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them!");
