@@ -462,19 +462,19 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
   }).catch(err => errormsg(message, err, "ping"))
 }
 else if(message.content.startsWith(`${prefix}tempmute`)){
-    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!tomute) return message.reply(":x: Couldn't find user.");
+    user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.reply(":x: Couldn't find user.");
     if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(":x: You Don't Have Permission");
-    if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!");
+    if(user.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Can't mute them!");
     let muterole = message.guild.roles.find(`name`, "Muted");
-    if(!muterole) return message.reply(':x:Please Create Muted Role');
+    if(!muterole) return message.reply(':x: Please Create Muted Role');
     let mutetime = args[1];
     if(!mutetime) return message.reply(":x: You didn't specify a time!");
-    (tomute.addRole(muterole.id));
-    message.channel.send(`**<@${tomute.id}> :zipper_mouth:  has been muted for ${ms(ms(mutetime))}**`);
+    (user.addRole(muterole.id));
+    message.channel.send(`**<@${user.id}> :zipper_mouth:  has been muted for ${ms(ms(mutetime))}**`);
     setTimeout(function(){
-      tomute.removeRole(muterole.id);
-      message.channel.send(`**<@${tomute.id}> has been unmuted!**`);
+      user.removeRole(muterole.id);
+      message.channel.send(`**<@${user.id}> has been unmuted!**`);
     }, ms(mutetime));
 
 
