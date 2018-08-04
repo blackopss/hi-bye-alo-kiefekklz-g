@@ -175,6 +175,12 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
+if(message.content.startsWith(`${prefix}help`)) {
+message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(err => {
+    message.channel.send(`:x: I cannot send the help to you because you are blocking dms.`)
+    errormsg(err, "help");
+})
+}
 
  if(message.content.startsWith(`${prefix}hug`)) {
     const { hug } = require(`./data/reactions.js`)
