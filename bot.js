@@ -3,7 +3,12 @@ const fs = require("fs");
 const moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
 const errmsg = "<:eRrOr:475075170231517184> **Oops, something unexpected happened!** The error was sent to our team and we'll do our best to fix it."
-const client = new Client({disableEveryone: true});
+const client = new Discord.Client({
+    disableEveryone: true,
+    messageCacheMaxSize: 500,
+    messageCacheLifetime: 120,
+    messageSweepInterval: 60
+  });
 const prefix = '.'
 client.login(process.env.SECERT_TOKEN);
 
@@ -173,7 +178,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 
  if(message.content.startsWith(`${prefix}hug`)) {
     const { hug } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
+    if(user.bot) return message.channel.send(`You can't do that to bots.`)
     if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
     user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
@@ -282,13 +287,17 @@ message.channel.send(new RichEmbed()
 
 } else if(message.content.startsWith(`${prefix}reboot`)) {
 if(devs.includes(message.author.id)) {
-message.channel.send(`**Rebooting....**`).then(client.destroy()).catch(err => errormsg(err, "reboot"))
-} else return;
+message.channel.send(`**Rebooting....**`).then(client.destroy())
+.catch(err => errormsg(err, "reboot"))
+}
+}else if(message.content.startsWith(`${prefix}ping`)) {
+    message.channel.sendMessage("**Pinging...**").then((message)=> {
+
+        message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.pings[1]} ms\``);
+        
+  })
 }
 });
-
-
-
 
 // ///Server icon
 // client.on("message", message => {
