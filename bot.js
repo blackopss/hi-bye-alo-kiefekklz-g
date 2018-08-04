@@ -137,21 +137,7 @@ client.login(process.env.SECERT_TOKEN);
 function random(xlenght) {
     return Math.floor((Math.random() * xlenght));
 }
-/////////////// Other Client Events //////////////////
-client.on("ready", () =>{
-client.user.setActivity(".help | Alpha")
-client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
-})
-client.on("error", (error) => client.channels.get("474245438837620736").send(error))
-/////////////// Other Client Events //////////////////
-
-client.on('message', async function(message) {
-if(message.channel.type !== "text") return; 
-let args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function errormsg(err, cmd) {
+function errormsg(message, err, cmd) {
     message.channel.send(errmsg) 
     client.channels.get("474245438837620736").send(`**:warning: Error**`, {embed: {
     description: err,
@@ -171,6 +157,20 @@ function errormsg(err, cmd) {
     ]}})
     return; 
 }
+/////////////// Other Client Events //////////////////
+client.on("ready", () =>{
+client.user.setActivity(".help | Alpha")
+client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
+})
+client.on("error", (error) => client.channels.get("474245438837620736").send(error))
+/////////////// Other Client Events //////////////////
+
+client.on('message', async function(message) {
+if(message.channel.type !== "text") return; 
+let args = message.content.split(" ").slice(1);
+let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////// C O M M A N D S //////////////////
