@@ -1,9 +1,9 @@
-const Discord = require('discord.js');
+const { Client, RichEmbed } = require('discord.js');
 const fs = require("fs");
 const moment = require("moment");
 const devs = ['431150885549113344','244423000802328576','343383616895713290','171259176029257728'];
 const errmsg = "<:eRrOr:475075170231517184> **Oops, something unexpected happened!** The error was sent to our team and we'll do our best to fix it."
-const client = new Discord.Client();
+const client = new Client({disableEveryone: true});
 const prefix = '.'
 client.login(process.env.SECERT_TOKEN);
 
@@ -187,7 +187,7 @@ else if(message.content.startsWith(`${prefix}kiss`)) {
     if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
     user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. take a kiss" : `**${user.user.username}** you have been kissed by **${message.author.username}**`, {files:
+    message.channel.send((user.id === message.author.id) ? "<a:waifuKiss:475096313482969089> Awwwwww ): you seems too lonely. take a kiss" : `**<a:waifuKiss:475096313482969089> ${user.user.username}** you have been kissed by **${message.author.username}**`, {files:
     [kiss[random(kiss.length)]]
     }).catch(err => errormsg(err, "kiss"))
 }
@@ -245,6 +245,27 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
     message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
     [tickle[random(tickle.length)]]
     }).catch(err => errormsg(err, "tickle"))
+} 
+else if(message.content.startsWith(`${prefix}avatar`)) {
+    message.channel.send(new RichEmbed()
+.setTitle(`${user.username}'s Avatar URL`)
+.setURL(user.avatarURL)
+.setImage(user.avatarURL)
+.setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
+)
+}
+else if (message.content.startsWith(`${prefix}server`)) {
+const vlevel = ['None', 'Low', 'Medium', 'High', 'Ultra-High']
+message.channel.send(new RichEmbed()
+.setAuthor(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL)
+.addField('🛡 Security', vlevel[message.guild.verificationLevel], true)
+.addField('🌐 Region', message.guild.region, true)
+.addField("👑 Owner", `${message.guild.owner.user.username} (${message.guild.owner.id})`, true)
+.addField("👥 Members", `${message.guild.members.size} total (${client.users.filter(user => user.presence.status === "online" + user.presence.status === "dnd" + user.presence.status === 'idle').size} total(${client.users.size} online)`, true)
+.addField("🗨 Channels", `**${message.guild.channels.filter(c => c.type === 'category').size}** Categories | **${message.guild.channels.filter(c => c.type === 'text').size}** Text | **${message.guild.channels.filter(c => c.type === 'voice').size}** Voice`, true)
+.addField("🔐 Roles", `**${message.guild.roles.size}** role. use **${prefix}roles** to view a list of rules`, true)
+.setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
+)
 }
 });
 
