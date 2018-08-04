@@ -202,7 +202,7 @@ message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(er
     [hug[random(hug.length)]]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
-    helpcmd(commands, "hug", "Action Commands", "Hugs the specified user.", `hug <@user | user username | user ID>`)
+    helpcmd(commands, "hug", "Action Commands", "Hugs the specified user.", `hug <@user | user username | user ID>`).then(console.log(commands))
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
