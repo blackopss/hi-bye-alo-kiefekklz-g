@@ -499,8 +499,8 @@ else if(message.content.startsWith(`${prefix}mute`)){
     }})
     setTimeout(function(){
       user.removeRole(muterole.id);
-      message.channel.send(`**${user.username}** has been unmuted!`);
-      user.send(`You are no longer muted in **${message.guild.name}**.`)
+      message.channel.send(`**${user.user.username}** is no longer muted.`);
+      user.send(`<:waifuThumbs:475427359898599441> You are no longer muted in **${message.guild.name}**.`)
     }, ms(mutetime));
   }
 ////////////////////////////////////////////////////////////////////////
