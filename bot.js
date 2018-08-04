@@ -459,6 +459,42 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
     message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
   }).catch(err => errormsg(message, err, "ping"))
 }
+else if(message.content.startsWith(`${prefix}tempmute`)){
+    if(!message.author.hasPermission('MANAGE_ROLES')) return message.reply("You Don't Have Premission To Do it!")
+    if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("I Don't Have Permission");
+    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!tomute) return message.reply("Couldn't find user.");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them!");
+  let muterole = message.guild.roles.find(`name`, "Muted");
+  if(!muterole){
+    try{
+      muterole = await message.guild.createRole({
+        name: "Muted",
+        color: "#000000",
+        permissions:[]
+      })
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+  let mutetime = args[1];
+  if(!mutetime) return message.reply("You didn't specify a time!");
+
+  await(tomute.addRole(muterole.id));
+  message.reply(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
+
+  setTimeout(function(){
+    tomute.removeRole(muterole.id);
+    message.channel.send(`<@${tomute.id}> has been unmuted!`);
+  }, ms(mutetime));
+
+}
 ////////////////////////////////////////////////////////////////////////
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
