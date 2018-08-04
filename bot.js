@@ -207,7 +207,7 @@ if (message.content === `${prefix}help`) {
     for (var cmd in commands) {
         if (commands[cmd].role.toUpperCase() === 'USER') {
             commandsFound++
-            embed.addField(`${commands[cmd].name}`, `**Description:** ${commands[cmd].desc}\n**Usage:** ${prefix + commands[cmd].usage}`);
+            embed.addField(`${commands[cmd]}`, `**Description:** ${commands[cmd].desc}\n**Usage:** ${prefix + commands[cmd].usage}`);
         }
 
     }
