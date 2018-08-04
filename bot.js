@@ -461,7 +461,7 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 }
 
 else if(message.content.startsWith(`${prefix}mute`)){
-    user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
     let reason = args[1]
     if(!reason) reason = "Unspecified"
     if(!user) return message.reply(":x: Couldn't find user.");
