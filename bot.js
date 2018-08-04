@@ -140,7 +140,7 @@ function random(xlenght) {
 function errormsg(message, err, cmd) {
     message.channel.send(errmsg) 
     client.channels.get("474245438837620736").send(`**:warning: Error**`, {embed: {
-    description: err,
+    description: `\`\`\`${err}\`\`\` `,
     fields: [
         {
         name: "**server**",
