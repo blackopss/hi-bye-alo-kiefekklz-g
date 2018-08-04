@@ -279,6 +279,8 @@ message.channel.send(new RichEmbed()
 .setDescription(roles)
 .setAuthor(`${message.guild.name}'s Roles`,message.guild.iconURL)
 ).catch(err => errormsg(err, "roles"))
+} else if(message.content.startsWith(`${prefix}reboot`)) {
+message.channel.send(`**Rebooting....**`).then(client.destroy())
 }
 });
 
