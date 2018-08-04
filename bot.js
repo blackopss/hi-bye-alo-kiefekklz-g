@@ -499,7 +499,7 @@ else if(message.content.startsWith(`${prefix}mute`)){
     }})
     setTimeout(function(){
       user.removeRole(muterole.id);
-      message.channel.send(`**${user.user.username}** is no longer muted.`);
+      message.channel.send(`<:waifuThumbs:475427359898599441> **${user.user.username}** is no longer muted.`);
       user.send(`<:waifuThumbs:475427359898599441> You are no longer muted in **${message.guild.name}**.`)
     }, ms(mutetime));
   }
