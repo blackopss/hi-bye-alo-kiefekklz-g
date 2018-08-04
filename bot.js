@@ -158,7 +158,8 @@ client.on("ready", () =>{
 client.user.setActivity(".help | Alpha")
 client.channels.get("475028391473709068").send(`Waifu's bot is ready.`)
 })
-
+client.on("error", (error) => client.channels.get("474245438837620736").send(error))
+/////////////// Other Client Events //////////////////
 
 client.on('message', message => {
 if(message.channel.type !== "text") return; 
