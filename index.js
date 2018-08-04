@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const Enmap = require('enmap');
 const EnmapSQLite = require('enmap-sqlite');
-const { token, defaultSettings } = require('./config.json');
+const { defaultSettings } = require('./config.json');
 
 const files = fs.readdirSync('./commands');
 const events = fs.readdirSync('./events');
@@ -87,6 +87,6 @@ for (let i = 0; i < jsevents.length; i++) {
   client.on(jsevents[i].split('.')[0], (...args) => event.run(...args));
 }
 
-client.login(token);
+client.login(process.env.TOKEN);
 
 process.on('unhandledRejection', err => client.log(err));
