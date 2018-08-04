@@ -177,7 +177,7 @@ let user = message.mentions.users.first() || message.guild.members.get(args[0]) 
 if(message.content.startsWith(`${prefix}help`)) {
 message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(err => {
     message.channel.send(`:x: I cannot send the help to you because you are blocking dms.`)
-    errormsg(err, "help");
+    errormsg(message, err, "help");
 })
 }
 
@@ -189,7 +189,7 @@ message.author.send(`I'am too lazy to do a help. PLS SPYRO u do it (:`).catch(er
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
-    }).catch(err => errormsg(err, "hug"))
+    }).catch(err => errormsg(message, err, "hug"))
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
@@ -200,7 +200,7 @@ else if(message.content.startsWith(`${prefix}kiss`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "<a:waifuKiss:475096313482969089> Awwwwww ): you seems too lonely. take a kiss" : `**<a:waifuKiss:475096313482969089> ${user.user.username}** you have been kissed by **${message.author.username}**`, {files:
     [kiss[random(kiss.length)]]
-    }).catch(err => errormsg(err, "kiss"))
+    }).catch(err => errormsg(message, err, "kiss"))
 }
 
 else if(message.content.startsWith(`${prefix}slap`)) {
@@ -211,7 +211,7 @@ else if(message.content.startsWith(`${prefix}slap`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "u SlApPeD ur Slef!?!?" : `**${user.user.username}** you have been slapped by **${message.author.username}**`, {files:
     [slap[random(slap.length)]]
-    }).catch(err => errormsg(err, "slap"))
+    }).catch(err => errormsg(message, err, "slap"))
 }
 
 else if(message.content.startsWith(`${prefix}pat`)) {
@@ -222,7 +222,7 @@ else if(message.content.startsWith(`${prefix}pat`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a pat" : `**${user.user.username}** you have been patted by **${message.author.username}**`, {files:
     [pat[random(pat.length)]]
-    }).catch(err => errormsg(err, "pat"))
+    }).catch(err => errormsg(message, err, "pat"))
 }
 
 else if(message.content.startsWith(`${prefix}cuddle`)) {
@@ -233,7 +233,7 @@ else if(message.content.startsWith(`${prefix}cuddle`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a cuddle" : `**${user.user.username}** you have been cuddled by **${message.author.username}**`, {files:
     [cuddle[random(cuddle.length)]]
-    }).catch(err => errormsg(err, "cuddle"))
+    }).catch(err => errormsg(message, err, "cuddle"))
 }
 
 else if(message.content.startsWith(`${prefix}poke`)) {
@@ -244,7 +244,7 @@ else if(message.content.startsWith(`${prefix}poke`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "U PoKEd Ur SeLf! r U sCared?" : `**${user.user.username}** you have been poked by **${message.author.username}**`, {files:
     [poke[random(poke.length)]]
-    }).catch(err => errormsg(err, "poke"))
+    }).catch(err => errormsg(message, err, "poke"))
 }
 
 else if(message.content.startsWith(`${prefix}tickle`)) {
@@ -255,7 +255,7 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
     [tickle[random(tickle.length)]]
-    }).catch(err => errormsg(err, "tickle"))
+    }).catch(err => errormsg(message, err, "tickle"))
 } 
 else if(message.content.startsWith(`${prefix}avatar`)) {
 user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
@@ -266,7 +266,7 @@ message.channel.send(new RichEmbed()
 .setURL(user.user.avatarURL)
 .setImage(user.user.avatarURL)
 .setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
-).catch(err => errormsg(err, "avatar"))
+).catch(err => errormsg(message, err, "avatar"))
 }
 else if (message.content.startsWith(`${prefix}server`)) {
 const vlevel = ['None', 'Low', 'Medium', 'High', 'Ultra-High']
@@ -280,7 +280,7 @@ message.channel.send(new RichEmbed()
 .addField("🔐 Roles", `**${message.guild.roles.size}** role. use **${prefix}roles** to view a list of roles`, true)
 .setFooter(`Requsted by ${message.author.username}`, message.author.avatarURL)
 .setColor("GREEN")
-).catch(err => errormsg(err, "server"))
+).catch(err => errormsg(message, err, "server"))
 }
 else if(message.content.startsWith(`${prefix}roles`)) {
 const roles = message.guild.roles.sort(function(b,a) {return a.position - b.position}).map(m => m.name).join(" ");
@@ -288,19 +288,18 @@ message.channel.send(new RichEmbed()
 .setColor('GREEN')
 .setDescription(roles)
 .setAuthor(`${message.guild.name}'s Roles`,message.guild.iconURL)
-).catch(err => errormsg(err, "roles"))
+).catch(err => errormsg(message, err, "roles"))
 
 } else if(message.content.startsWith(`${prefix}reboot`)) {
 if(devs.includes(message.author.id)) {
 message.channel.send(`**Rebooting....**`).then(client.destroy())
-.catch(err => errormsg(err, "reboot"))
+.catch(err => errormsg(message, err, "reboot"))
 }
 
 }else if(message.content.startsWith(`${prefix}ping`)) {
     message.channel.sendMessage("**Pinging...**").then((message)=> {
     message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
-        
-  })
+  }).catch(err => errormsg(message, err, "ping"))
 }
 });
 
