@@ -429,7 +429,7 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
 const nsfwapi = require('kaori')
 const kaori = new nsfwapi()
 if(message.channel.nsfw === false) return message.channel.send(`:x: The channel must be **NSFW**.`)
-kaori.search('loli', { tags: ['hentai'], limit: 1, random: true })
+kaori.search('rule34', { tags: ['hentai'], limit: 1, random: true })
     .then(images => message.channel.send("", {files: [images[0].common.fileURL]}))
     .catch(err => errormsg(message, err, "nsfw"));
 }
