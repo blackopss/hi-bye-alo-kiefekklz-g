@@ -173,7 +173,7 @@ usage: usage
 /////////////// Other Client Events //////////////////
 client.on("ready", () => {
 client.user.setActivity(".help | Bots Nightmare.")
-client.channels.get("475028391473709068").send(`Megumi's bot is ready`+`\n Starded on ${message.createdTimestamp}`)
+client.channels.get("475028391473709068").send(`Megumi's bot is ready`)
 helpcmd(commands, "Hug", "user", "Action Commands", "Hugs the specified user.", `hug <@user | user username | user ID>`)
 helpcmd(commands, "Kiss", "user", "Action Commands", "Kisses the specified user.", `kiss <@user | user username | user ID>`)
 helpcmd(commands, "Slap", "user", "Action Commands", "Slaps the specified user.", `slap <@user | user username | user ID>`)
