@@ -511,16 +511,6 @@ else if(message.content.startsWith(`${prefix}mute`)){
       user.send(`<:waifuThumbs:475427359898599441> You are no longer muted in **${message.guild.name}**.`)
     }, ms(mutetime));
   }
-
-  else
-    if(message.content.startsWith(`${prefix}clear`)) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Sorry Pal, You Don't Have Premission");
-    if(!args[0]) return message.channel.send(":x: Please Provide the number of messages to clear");
-    message.channel.bulkDelete(args[0]).then(() => {
-    message.channel.send(`Cleared ${args[0]} messages.`).then(msg => msg.delete(2000));
-
-    })
-  }
 ////////////////////////////////////////////////////////////////////////
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
