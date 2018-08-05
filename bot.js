@@ -424,7 +424,17 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
     message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
     [tickle[random(tickle.length)]]
     }).catch(err => errormsg(message, err, "tickle"))
-} 
+
+} else if(message.content.startsWith(`${prefix}nsfw`)) {
+const nsfwapi = require('kaori')
+const kaori = new nsfwapi()
+if(message.channel.nsfw === false) return message.channel.send(`:x: The channel must be **NSFW**.`)
+kaori.search('danbooru', { tags: ['boobs'], limit: 1, random: true })
+    .then(images => message.channel.send("", {files: [images[0].common.fileURL]}))
+    .catch(err => console.error(err));
+}
+
+
 else if(message.content.startsWith(`${prefix}avatar`)) {
 user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
 if(!message.mentions.users.first() || !args[0]) user = message.member
