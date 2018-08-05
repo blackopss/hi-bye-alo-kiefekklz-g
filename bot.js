@@ -514,13 +514,13 @@ else if(message.content.startsWith(`${prefix}mute`)){
 
   else
   if(message.content.starsWith(`${prefix}clear`)) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: You Don't Have Premission To Do that!");
+    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Sorry Pal, You Don't Have Premission");
     if(!args[0]) return message.channel.send(":x: Please Provide the number of messages to clear");
     message.channel.bulkDelete(args[0]).then(() => {
     message.channel.send(```Cleared ${args[0]} messages.```).then(msg => msg.delete(2000));
 
     })
-}
+  }
 ////////////////////////////////////////////////////////////////////////
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
