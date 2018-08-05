@@ -344,12 +344,20 @@ if (message.content === `${prefix}help`) {
     const { hug } = require(`./data/reactions.js`)
     if(user.bot) return message.channel.send(`You can't do that to bots.`)
     if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName.toLowerCase() === args[0])
+    if(message.mentions.members.size > 1 || args[1]) {
+    user = message.mentions.members.map(m => m.user.username).join(",")
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.map(u => u.user.username)}** you have been hugged by **${message.author.username}**`, {files:
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files:
     [hug[random(hug.length)]]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
+    } else {
+    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
+    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
+    message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
+    [hug[random(hug.length)]]
+    /////////////////////////////////////////////////////////////
+    }).catch(err => errormsg(message, err, "hug"))}
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
@@ -416,16 +424,7 @@ else if(message.content.startsWith(`${prefix}tickle`)) {
     message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
     [tickle[random(tickle.length)]]
     }).catch(err => errormsg(message, err, "tickle"))
-
- } 
-//else if(message.content.startsWith(`${prefix}nsfw`)) {
-// const nsfwapi = require('kaori')
-// const kaori = new nsfwapi()
-// if(message.channel.nsfw === false) return message.channel.send(`:x: The channel must be **NSFW**.`)
-// kaori.search('rule34', { tags: ['hentai'], limit: 1, random: true })
-//     .then(images => message.channel.send("", {files: [images[0].common.fileURL]}))
-//     .catch(err => errormsg(message, err, "nsfw"));
-// }
+}
 
 
 else if(message.content.startsWith(`${prefix}avatar`)) {
