@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "discord.js": "^11.3.2",
-    "kaori": "^1.1.4",
     "moment": "^2.22.2",
     "ms": "^2.1.1"
   },
