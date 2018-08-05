@@ -173,7 +173,7 @@ usage: usage
 /////////////// Other Client Events //////////////////
 client.on("ready", () => {
 client.user.setActivity(".help | Bots Nightmare.")
-client.channels.get("475028391473709068").send(`Megumi's bot is ready.`)
+client.channels.get("475028391473709068").send(`Megumi's bot is ready`+`\n Starded on ${message.createdTimestamp}`)
 helpcmd(commands, "Hug", "user", "Action Commands", "Hugs the specified user.", `hug <@user | user username | user ID>`)
 helpcmd(commands, "Kiss", "user", "Action Commands", "Kisses the specified user.", `kiss <@user | user username | user ID>`)
 helpcmd(commands, "Slap", "user", "Action Commands", "Slaps the specified user.", `slap <@user | user username | user ID>`)
@@ -513,11 +513,11 @@ else if(message.content.startsWith(`${prefix}mute`)){
   }
 
   else
-  if(message.content.starsWith(`${prefix}clear`)) {
+    if(message.content.startsWith(`${prefix}clear`)) {
     if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(":x: Sorry Pal, You Don't Have Premission");
     if(!args[0]) return message.channel.send(":x: Please Provide the number of messages to clear");
     message.channel.bulkDelete(args[0]).then(() => {
-    message.channel.send(```Cleared ${args[0]} messages.```).then(msg => msg.delete(2000));
+    message.channel.send(`Cleared ${args[0]} messages.`).then(msg => msg.delete(2000));
 
     })
   }
