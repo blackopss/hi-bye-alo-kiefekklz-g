@@ -13,6 +13,7 @@ const ms = require('ms');
 const prefix = '.'
 const nekoclient = require('nekos.life')
 const neko = new nekoclient()
+const commands = JSON.parse(fs.readFileSync("./data/commands.json", "utf8"));
 client.login(process.env.SECERT_TOKEN);
 
 //By Abady Refactoring
