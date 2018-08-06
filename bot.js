@@ -310,13 +310,12 @@ if (message.content === `${prefix}help`) {
  if(message.content.startsWith(`${prefix}hug`)) {
     if(user.bot) return message.channel.send(`You can't do that to bots.`)
     if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
-    if(message.mentions.members.size > 1) {
-    user = message.mentions.members.map(m => m.user.username).join(",")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files: [neko.getSFWHug().url]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
-    }
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {
