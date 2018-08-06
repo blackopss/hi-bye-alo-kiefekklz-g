@@ -392,7 +392,10 @@ if(message.content.startsWith(`${prefix}tickle`)) {
 // NSFW Commands //
 if(message.content.startsWith(`${prefix}nsfw`)) {
 if(!message.channel.nsfw) return message.channel.send(`:x: The channel must be **NSFW**. **[Click here to learn more.](https://support.discordapp.com/hc/en-us/articles/115000084051-NSFW-channels-and-content)**`)
-if(!args[0]) return getNSFWRandomHentaiGif().then((img) => img.url)
+if(!args[0]) return neko.getNSFWRandomHentaiGif().then((img) => messgae.channel.send(new RichEmbed()
+.setImage(img.url)
+.setColor("GREEN")
+)) 
 }
 
 //////////////////////////
