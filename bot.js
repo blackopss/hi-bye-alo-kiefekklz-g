@@ -313,7 +313,8 @@ if (message.content === `${prefix}help`) {
     user = message.mentions.members.map(m => m.user.username)
     if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files: [neko.getSFWHug().url]
+    const img = await neko.getSFWHug()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files: [img.url]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
 }
@@ -425,7 +426,7 @@ message.channel.send(`**Rebooting....**`).then(client.destroy())
 }
 
 }else if(message.content.startsWith(`${prefix}ping`)) {
-    message.channel.sendMessage("**Pinging...**").then((message)=> {
+    message.channel.send("**Pinging...**").then((message)=> {
     message.edit(`**Time Taken :ping_pong: ** \`${Date.now() - message.createdTimestamp} ms\`` + `\n **Discord API <:disc:475249489607917580> ** \`${client.ping} ms\``);
   }).catch(err => errormsg(message, err, "ping"))
 }
