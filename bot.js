@@ -390,13 +390,11 @@ if(message.content.startsWith(`${prefix}tickle`)) {
 
 
 // NSFW Commands //
-let nsfwimg;
 if(message.content.startsWith(`${prefix}nsfw`)) {
+let nsfwimg;
 if(!message.channel.nsfw) return message.channel.send(`:x: The channel must be **NSFW**.\nMore info: **<https://goo.gl/4AViTc>**`)
-if(!args) { nsfwimg = await neko.getNSFWRandomHentaiGif()
+nsfwimg = await neko.getNSFWRandomHentaiGif()
 message.channel.send(new RichEmbed() .setImage(nsfwimg.url) .setColor("GREEN"))}
-
-}
 
 //////////////////////////
 
