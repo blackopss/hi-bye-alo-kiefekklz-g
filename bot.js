@@ -11,7 +11,8 @@ const client = new Client({
   });
 const ms = require('ms');
 const prefix = '.'
-const commands = JSON.parse(fs.readFileSync("data/commands.json", "utf8"))
+const nekoclient = require('nekos.life')
+const neko = new nekoclient()
 client.login(process.env.SECERT_TOKEN);
 
 //By Abady Refactoring
@@ -306,23 +307,15 @@ if (message.content === `${prefix}help`) {
 }
 
  if(message.content.startsWith(`${prefix}hug`)) {
-    const { hug } = require(`./data/reactions.js`)
     if(user.bot) return message.channel.send(`You can't do that to bots.`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    if(message.mentions.members.size > 1 || args[1]) {
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    if(message.mentions.members.size > 1) {
     user = message.mentions.members.map(m => m.user.username).join(",")
     if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files:
-    [hug[random(hug.length)]]
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files: [neko.getSFWHug().url]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
-    } else {
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "<:waifuHug:475072567137533953> Awwwwww ): you seems too lonely. take a hug" : `<:waifuHug:475072567137533953> **${user.user.username}** you have been hugged by **${message.author.username}**`, {files:
-    [hug[random(hug.length)]]
-    /////////////////////////////////////////////////////////////
-    }).catch(err => errormsg(message, err, "hug"))}
+    }
 }
 
 else if(message.content.startsWith(`${prefix}kiss`)) {

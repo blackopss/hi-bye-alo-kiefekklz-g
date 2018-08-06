@@ -9,7 +9,8 @@
   "dependencies": {
     "discord.js": "^11.3.2",
     "moment": "^2.22.2",
-    "ms": "^2.1.1"
+    "ms": "^2.1.1",
+    "nekos.life": "^1.0.6"
   },
   "engines": {
     "node": "8.x"
