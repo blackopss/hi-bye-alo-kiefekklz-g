@@ -308,83 +308,81 @@ if (message.content === `${prefix}help`) {
 }
 
  if(message.content.startsWith(`${prefix}hug`)) {
-    if(user.bot) return message.channel.send(`You can't do that to bots.`)
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
     if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
     user = message.mentions.members.map(m => m.user.username)
     if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
     const img = await neko.getSFWHug()
     message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been hugged by **${message.author.username}**`, {files: [img.url]
     /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "hug"))
 }
 
-else if(message.content.startsWith(`${prefix}kiss`)) {
-    const { kiss } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "<a:waifuKiss:475096313482969089> Awwwwww ): you seems too lonely. take a kiss" : `**<a:waifuKiss:475096313482969089> ${user.user.username}** you have been kissed by **${message.author.username}**`, {files:
-    [kiss[random(kiss.length)]]
+if(message.content.startsWith(`${prefix}kiss`)) {
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
+    const img = await neko.getSFWKiss()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been kissed by **${message.author.username}**`, {files: [img.url]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "kiss"))
 }
 
-else if(message.content.startsWith(`${prefix}slap`)) {
-    const { slap } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "u SlApPeD ur Slef!?!?" : `**${user.user.username}** you have been slapped by **${message.author.username}**`, {files:
-    [slap[random(slap.length)]]
+if(message.content.startsWith(`${prefix}slap`)) {
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
+    const img = await neko.getSFWSlap()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been slapped by **${message.author.username}**`, {files: [img.url]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "slap"))
 }
 
-else if(message.content.startsWith(`${prefix}pat`)) {
-    const { pat } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a pat" : `**${user.user.username}** you have been patted by **${message.author.username}**`, {files:
-    [pat[random(pat.length)]]
+if(message.content.startsWith(`${prefix}pat`)) {
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
+    const img = await neko.getSFWPat()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been patted by **${message.author.username}**`, {files: [img.url]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "pat"))
 }
 
-else if(message.content.startsWith(`${prefix}cuddle`)) {
-    const { cuddle } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "Awwwwww ): you seems too lonely. here a cuddle" : `**${user.user.username}** you have been cuddled by **${message.author.username}**`, {files:
-    [cuddle[random(cuddle.length)]]
+if(message.content.startsWith(`${prefix}cuddle`)) {
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
+    const img = await neko.getSFWCuddle()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been cuddled by **${message.author.username}**`, {files: [img.url]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "cuddle"))
 }
 
-else if(message.content.startsWith(`${prefix}poke`)) {
-    const { poke } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "U PoKEd Ur SeLf! r U sCared?" : `**${user.user.username}** you have been poked by **${message.author.username}**`, {files:
-    [poke[random(poke.length)]]
+if(message.content.startsWith(`${prefix}poke`)) {
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
+    const img = await neko.getSFWPoke()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been poked by **${message.author.username}**`, {files: [img.url]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "poke"))
 }
 
-else if(message.content.startsWith(`${prefix}tickle`)) {
-    const { tickle } = require(`./data/reactions.js`)
-    if(user.bot) return message.channel.send(`You can't do that to bots. (Bot don't give a fuck about you)`)
-    if(message.mentions.users.size < 1 && !args[0]) return message.channel.send(":x: You need to mention/type a user.")
-    user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
-    if(!user) return message.channel.send(`:x: Couldn't find a user with **${args}**.`)
-    message.channel.send((user.id === message.author.id) ? "You tickled ur self ):" : `**${user.user.username}** you have been tickled by **${message.author.username}**`, {files:
-    [tickle[random(tickle.length)]]
+if(message.content.startsWith(`${prefix}tickle`)) {
+    if(user.bot) return message.channel.send(`:x: You can't do that to bots.`)
+    if(message.mentions.users.size < 1) return message.channel.send(":x: You need to mention a user/users.")
+    user = message.mentions.members.map(m => m.user.username)
+    if(message.mentions.members.size > 1) user = message.mentions.members.map(m => m.user.username).join(",")
+    const img = await neko.getSFWTickle()
+    message.channel.send(`<:waifuHug:475072567137533953> **${user}** you have been tickled by **${message.author.username}**`, {files: [img.url]
+    /////////////////////////////////////////////////////////////
     }).catch(err => errormsg(message, err, "tickle"))
 }
-
 
 else if(message.content.startsWith(`${prefix}avatar`)) {
 user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0])
