@@ -394,7 +394,7 @@ if(message.content.startsWith(`${prefix}nsfw`)) {
 let nsfwimg;
 if(!message.channel.nsfw) return message.channel.send(`:x: The channel must be **NSFW**.\nMore info: **<https://goo.gl/4AViTc>**`)
 nsfwimg = await neko.getNSFWRandomHentaiGif()
-message.channel.send(new RichEmbed() .setImage(nsfwimg.url) .setColor("GREEN"))}
+message.channel.send({files: [nsfwimg.url]}).catch(err => errormsg(message, err, "nsfw"))}
 
 //////////////////////////
 
