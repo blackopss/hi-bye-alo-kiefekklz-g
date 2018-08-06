@@ -412,6 +412,7 @@ message.channel.send(randomResponds, {files: [nsfwimg.url]}).catch(err => errorm
 else if(args[0].toLowerCase().startsWith("kuni")) {
 nsfwimg = await neko.getNSFWKuni()
 message.channel.send(randomResponds, {files: [nsfwimg.url]}).catch(err => errormsg(message, err, "nsfw"))
+console.log(nsfwimg.url)
 }
 else if(args[0].toLowerCase().startsWith("cumslut")) {
 nsfwimg = await neko.getNSFWCumsluts()
