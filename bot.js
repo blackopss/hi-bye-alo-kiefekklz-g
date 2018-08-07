@@ -203,7 +203,7 @@ if(message.channel.type !== "text") return;
 if(!message.content.startsWith(prefix)) return; 
 if(cooldown.has(message.author.id)) return message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${(spammers[message.author.id].time - message.createdTimestamp) / 1000}** seconds left)`)
 cooldown.add(message.author.id).then(() => {
-addSpam(spammers, message, message.author.id, ++1)
+addSpam(spammers, message, message.author.id, spammers[message.author.id].many + 1)
 })
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
