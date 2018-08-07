@@ -210,6 +210,7 @@ if(cooldown.has(message.author.id)) {
 }
 {
 cooldown.add(message.author.id)
+console.log(cooldown.entries())
 addSpam(spammers, message.createdTimestamp + 10000, message.author.id, +1)
 }
 let args = message.content.split(" ").slice(1);
