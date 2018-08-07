@@ -208,10 +208,7 @@ if(cooldown.has(message.author.id)) {
     message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${prettyMs(message.createdTimestamp - spammers[message.author.id].time, {compact: true})}** seconds left)`)
     return;
 }
-{ 
-if(!spammers[message.author.id].many > 10) { 
-return message.channel.send(`**You've been blocked from ${client.user.username}**.\nPlease go to url to get unblocked.`)    
-}
+{
 cooldown.add(message.author.id)
 addSpam(spammers, message.createdTimestamp, message.author.id, +1)
 }
