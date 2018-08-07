@@ -408,12 +408,10 @@ if(message.content.startsWith(`${prefix}nsfw`)) {
 let nsfwimg;
 const randomRespondsSetUp = [":heart_eyes: Wow!", "**Here you go :point_right: :ok_hand:", "DON'T GET **HORNY**!!!"]
 const randomResponds = randomRespondsSetUp[Math.floor(Math.random * randomRespondsSetUp.length)]
-console.log(randomResponds)
 if(!message.channel.nsfw) return message.channel.send(`:x: The channel must be **NSFW**.\nMore info: **<https://goo.gl/4AViTc>**`)
 if(!args[0]) {
 nsfwimg = await neko.getNSFWRandomHentaiGif()
 message.channel.send(randomResponds, {files: [nsfwimg.url]}).catch(err => errormsg(message, err, "nsfw"))
-console.log(nsfwimg.url)
 return;
 } else if(args[0].toLowerCase().startsWith("pussy")) {
 nsfwimg = await neko.getNSFWPussy()
@@ -430,7 +428,6 @@ message.channel.send(randomResponds, {files: [nsfwimg.url]}).catch(err => errorm
 else if(args[0].toLowerCase().startsWith("kuni")) {
 nsfwimg = await neko.getNSFWKuni()
 message.channel.send(randomResponds, {files: [nsfwimg.url]}).catch(err => errormsg(message, err, "nsfw"))
-console.log(nsfwimg.url)
 }
 else if(args[0].toLowerCase().startsWith("cumslut")) {
 nsfwimg = await neko.getNSFWCumsluts()
