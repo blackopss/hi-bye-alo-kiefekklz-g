@@ -16,6 +16,7 @@ const neko = new nekoclient()
 const commands = JSON.parse(fs.readFileSync("./data/commands.json", "utf8"));
 const spammers = []
 let cooldown = new Set();
+const prettyMs = require('pretty-ms')
 client.login(process.env.SECERT_TOKEN);
 
 //By Abady Refactoring
@@ -204,7 +205,7 @@ if(!message.content.startsWith(prefix)) return;
 if(message.author.bot) return;
 if(cooldown.has(message.author.id)) {
     message.delete();
-    message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${(spammers[message.author.id].time - message.createdTimestamp) / 1000}** seconds left)`)
+    message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${prettyMs(spammers[message.author.id].time - message.createdTimestamp, {compact: true})}** seconds left)`)
     return;
 }
 { 
