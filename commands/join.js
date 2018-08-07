@@ -25,5 +25,5 @@ class Join extends Command {
     this.client.embed('summoned', message);
   }
 }
-
+//Join
 module.exports = Join;
