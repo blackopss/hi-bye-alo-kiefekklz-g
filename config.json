@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "ownerid": "171259176029257728",
     "ytapikey": "AIzaSyDF7M44dIc-nrFYDlNAD-Xv7QQ6PUf9YtQ",
@@ -9,16 +8,4 @@
         "djrole": "dj",
         "maxqueuelength": 20
       }
-=======
-{
-    "ownerid": "171259176029257728",
-    "ytapikey": "AIzaSyDF7M44dIc-nrFYDlNAD-Xv7QQ6PUf9YtQ",
-        "defaultSettings": {
-        "prefix": "..",
-        "ratelimit": false,
-        "djonly": false,
-        "djrole": "dj",
-        "maxqueuelength": 20
-      }
->>>>>>> df8c9866469ebe90f5c887200a9c6922a371d30e
   }
