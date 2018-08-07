@@ -563,7 +563,7 @@ else if(message.content.startsWith(`${prefix}mute`)){
 ////////////////////////////////////////////////////////////////////////
 setTimeout(() => {
     cooldown.delete(message.author.id)
-}, spammers[message.author.id].many * 5000)
+}, 10000)
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
   });
