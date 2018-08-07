@@ -201,13 +201,16 @@ process.on("unhandledRejection", (err) => client.channels.get("47424543883762073
 client.on('message', async function(message) {
 if(message.channel.type !== "text") return; 
 if(!message.content.startsWith(prefix)) return; 
+if(message.author.bot) return;
 if(cooldown.has(message.author.id)) {
     message.delete();
     message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${(spammers[message.author.id].time - message.createdTimestamp) / 1000}** seconds left)`)
     return;
 }
-else await cooldown.add(message.author.id) 
-console.log("someone got muted")
+{ 
+cooldown.add(message.author.id)
+addSpam(spammers, message.createdTimestamp, message.author.id, +1)
+}
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
