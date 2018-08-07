@@ -211,7 +211,7 @@ if(cooldown.has(message.author.id)) {
 {
 cooldown.add(message.author.id)
 console.log(cooldown.entries())
-addSpam(spammers, message.createdTimestamp + 10000, message.author.id, +1)
+addSpam(spammers, message.createdTimestamp + 3000, message.author.id, +1)
 }
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
@@ -561,7 +561,7 @@ else if(message.content.startsWith(`${prefix}mute`)){
 ////////////////////////////////////////////////////////////////////////
 setTimeout(() => {
     cooldown.delete(message.author.id)
-}, 10000)
+}, 3000)
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
   });
