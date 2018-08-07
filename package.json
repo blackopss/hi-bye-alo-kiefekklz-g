@@ -6,7 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "^11.3.2",
     "enmap": "^2.5.2",
     "enmap-sqlite": "^2.0.1",
     "ffmpeg-binaries": "^3.2.2-3",
