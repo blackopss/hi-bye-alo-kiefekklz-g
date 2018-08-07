@@ -14,6 +14,8 @@ const prefix = '.'
 const nekoclient = require('nekos.life')
 const neko = new nekoclient()
 const commands = JSON.parse(fs.readFileSync("./data/commands.json", "utf8"));
+const spammers = []
+let cooldown = new Set();
 client.login(process.env.SECERT_TOKEN);
 
 //By Abady Refactoring
@@ -137,9 +139,6 @@ client.login(process.env.SECERT_TOKEN);
 // ///End
 // ///id
 /////////////// Functions //////////////////
-function random(xlenght) {
-    return Math.floor((Math.random() * xlenght));
-}
 function errormsg(message, err, cmd) {
     message.channel.send(errmsg) 
     client.channels.get("474245438837620736").send(`**:warning: Error**`, {embed: {
@@ -172,6 +171,12 @@ desc: desc,
 usage: usage
 }
 }
+function addSpam(spammers, message, id, many) {
+spammers[id] = {
+    time: message.createdTimestamp, 
+    many: many
+} 
+}
 /////////////// Other Client Events //////////////////
 client.on("ready", () => {
 client.user.setActivity(".help | Soon..")
@@ -195,6 +200,11 @@ process.on("unhandledRejection", (err) => client.channels.get("47424543883762073
 
 client.on('message', async function(message) {
 if(message.channel.type !== "text") return; 
+if(!message.content.startsWith(prefix)) return; 
+if(cooldown.has(message.author.id)) return message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${(spammers[message.author.id].time - message.createdTimestamp) / 1000}** seconds left)`)
+cooldown.add(message.author.id).then(() => {
+addSpam(spammers, message, message.author.id, ++1)
+})
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -544,6 +554,9 @@ else if(message.content.startsWith(`${prefix}mute`)){
     }, ms(mutetime));
   }
 ////////////////////////////////////////////////////////////////////////
+setTimeout(() => {
+    cooldown.delete(message.author.id)
+}, spammers[message.author.id].many * 5000)
 fs.writeFile("./commands.json", JSON.stringify(commands), (err) => {
     if (err) console.error(err)
   });
