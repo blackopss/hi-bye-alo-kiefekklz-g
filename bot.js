@@ -205,12 +205,12 @@ if(!message.content.startsWith(prefix)) return;
 if(message.author.bot) return;
 if(cooldown.has(message.author.id)) {
     message.delete();
-    message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${prettyMs(message.createdTimestamp - spammers[message.author.id].time, {compact: true})}** seconds left)`)
+    message.channel.send(`:no_entry_sign: | **${message.author.username}**, Please cool down! (**${prettyMs(spammers[message.author.id].time - message.createdTimestamp, {compact: true})}** seconds left)`)
     return;
 }
 {
 cooldown.add(message.author.id)
-addSpam(spammers, message.createdTimestamp, message.author.id, +1)
+addSpam(spammers, message.createdTimestamp + 10000, message.author.id, +1)
 }
 let args = message.content.split(" ").slice(1);
 let user = message.mentions.users.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.displayName === args[0]) || message.author
