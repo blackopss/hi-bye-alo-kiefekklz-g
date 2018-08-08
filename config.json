@@ -1,6 +1,6 @@
 {
     "ownerid": "171259176029257728",
-    "ytapikey": "AIzaSyDF7M44dIc-nrFYDlNAD-Xv7QQ6PUf9YtQ",
+    "ytapikey": process.env.YT,
         "defaultSettings": {
         "prefix": "!!!",
         "ratelimit": false,
