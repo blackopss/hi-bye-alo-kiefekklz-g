@@ -1,0 +1,11 @@
+{
+    "ownerid": "171259176029257728",
+    "ytapikey": "",
+        "defaultSettings": {
+        "prefix": "!!!",
+        "ratelimit": false,
+        "djonly": false,
+        "djrole": "dj",
+        "maxqueuelength": 20
+      }
+  }
